@@ -2,7 +2,7 @@
 --- Сделай npm i
 --- Проинициализируй eslint npx eslint --init
 --- Создай базу данных
---- В файле .env пропиши нужный тебе порт (PORT) для сервера и настройки для database url (postgresUser, postgresUserPass, databaseName)
+--- В файле .env пропиши нужный тебе порт (PORT) для сервера, настройки для database url (postgresUser, postgresUserPass, databaseName) и твой SESSION_SECRET ключ
 --- Сделай npx sequelize-cli init
 --- В database.json в конфиге dev напиши "use_env_variable": "DATABASE_URL"
 --- Проверь путь импорта sequelize на 9 строке в файле app.js (const { sequelize } = require('../db/models')) и раскоментируй эту строчку
