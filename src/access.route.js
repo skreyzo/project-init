@@ -69,7 +69,15 @@ router.get('/albums', async (req, res) => {// страница с альбома
     } else {
       res.send('Sorry, access denied');
     }
+  } catch (error) {
+    console.error(error)
+    renderTemplate(Error, {
+      message: 'Не удалось добавить запись в базу данных.',
+      error: {},
+    }, res);
   }
 });
+
+
 
 module.exports = router;
