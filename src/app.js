@@ -42,13 +42,19 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 
 app.use((req, res, next) => {
-  app.locals.userName = req.session?.firstname; // User.firstname
+  app.locals.firstname = req.session?.firstname; // User.firstname
   app.locals.userId = req.session?.userId; // userId уточнить при создании юзера!!!
   next();
 });
 
 app.get('/', (req, res) => {
-  renderTemplate(Main, {}, res);
+  const username = req.session.firstname;
+  console.log('user', username);
+  if (username) {
+    renderTemplate(Main, { username }, res);
+  } else {
+    renderTemplate(Main, {}, res);
+  }
 });
 
 app.use('/user', userRoute);

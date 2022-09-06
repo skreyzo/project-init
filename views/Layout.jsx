@@ -1,6 +1,10 @@
+const {
+  proposalSyntaxPlugins,
+} = require('@babel/preset-env/lib/shipped-proposals');
 const React = require('react');
 
-module.exports = function Layout({ children, title }) {
+module.exports = function Layout({ children, title, username }) {
+  console.log('юзер лэйаут', username);
   return (
     <html lang="en">
       <head>
@@ -55,26 +59,33 @@ module.exports = function Layout({ children, title }) {
                         MyAlbom
                       </a>
                     </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/profile">
-                        Profile
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/">
-                        Logout
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/user/login">
-                        Login
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/user/register">
-                        Registration
-                      </a>
-                    </li>
+                    {username ? (
+                      <>
+                        <li className="nav-item">
+                          <a className="nav-link" href="/user/logout">
+                            Logout
+                          </a>
+                        </li>
+                        <li className="nav-item">
+                          <a className="nav-link" href="/profile">
+                            Profile
+                          </a>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li className="nav-item">
+                          <a className="nav-link" href="/user/login">
+                            Login
+                          </a>
+                        </li>
+                        <li className="nav-item">
+                          <a className="nav-link" href="/user/register">
+                            Registration
+                          </a>
+                        </li>
+                      </>
+                    )}
                   </ul>
                 </div>
               </div>
