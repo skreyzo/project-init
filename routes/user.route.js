@@ -4,7 +4,10 @@ const renderTemplate = require('../lib/renderReactModule');
 
 const LoginForm = require('../views/LoginForm');
 const RegisterForm = require('../views/RegisterForm');
+const Main = require('../views/Main');
 //const MyAlboms = require('../views/MyAlboms');
+
+//const { User } = require('../db/models');
 
 // регистрация
 route.get('/register', (req, res) => {
@@ -12,14 +15,16 @@ route.get('/register', (req, res) => {
 });
 
 route.post('/register', async (req, res) => {
-  const { password, email, name, surname } = req.body;
+  const { password, email, firstname, lastname } = req.body;
+  console.log(req.body);
   const user = await User.create({
     password,
     email,
-    name,
-    surname,
+    firstname,
+    lastname,
   });
-  req.session.username = user.name;
+  console.log(user);
+  req.session.firstname = user.firstname;
   req.session.email = user.email;
   req.session.userid = user.id;
   res.redirect('/user/login');
@@ -54,13 +59,13 @@ route.get('/logout', (req, res) => {
 });
 
 // поиск на юзера в бд
-// route.get('/:id', async (req, res) => {
-//   const user = await User.findByPk(req.params.id);
-//   if (user) {
-//     renderTemplate(/*MyAlboms*/, user.toJSON(), res);
-//   } else {
-//     res.redirect('/');
-//   }
-// });
+route.get('/:id', async (req, res) => {
+  const user = await User.findByPk(req.params.id);
+  if (user) {
+    renderTemplate(Main, user.toJSON(), res);
+  } else {
+    res.redirect('/');
+  }
+});
 
 module.exports = route;
