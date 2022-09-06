@@ -42,10 +42,14 @@ const sessionConfig = {
 
 app.use(session(sessionConfig));
 
-app.get('/', (req, res) => {
-  renderTemplate(Main, null, res);
+app.use((req, res, next) => {
+  app.locals.userName = req.session?.userName;// User.firstname
+  app.locals.userId = req.session?.userId;// userId уточнить при создании юзера!!!
+  next();
 });
-app.use('/user', userRoute);
+
+
+
 
 app.listen(PORT, async () => {
   console.log(`Сервер поднят на ${PORT} порту!`);
