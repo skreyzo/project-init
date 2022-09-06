@@ -1,0 +1,48 @@
+<mxfile host="65bd71144e">
+    <diagram id="rjCdl2A57h7BHks01gbu" name="Страница 1">
+
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="360" y="260" as="sourcePoint"/>
+                        <mxPoint x="410" y="210" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="650" y="170"/>
+                            <mxPoint x="630" y="155"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="360" y="260" as="sourcePoint"/>
+                        <mxPoint x="410" y="210" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="380" y="165"/>
+                            <mxPoint x="410" y="125"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="480" y="300" as="sourcePoint"/>
+                        <mxPoint x="530" y="250" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="920" y="360"/>
+                            <mxPoint x="900" y="165"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="480" y="270" as="sourcePoint"/>
+                        <mxPoint x="530" y="220" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="460" y="195"/>
+                            <mxPoint x="360" y="340"/>
+                            <mxPoint x="110" y="340"/>
+                            <mxPoint x="110" y="190"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
