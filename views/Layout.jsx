@@ -30,7 +30,7 @@ module.exports = function Layout({ children, title }) {
           <header>
             <nav className="navbar navbar-expand-lg bg-light">
               <div className="container-fluid">
-                <a className="navbar-brand" href="/">
+                <a className="navbar-brand" href="/upload">
                   MyPhoto
                 </a>
                 <button

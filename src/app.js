@@ -15,6 +15,7 @@ const renderTemplate = require('../lib/renderReactModule');
 
 const Main = require('../views/Main'); //главная страница
 const userRoute = require('../routes/user.route'); //регистер и авторизэйшн
+const uploadRoute = require('../routes/upload'); //регистер и авторизэйшн
 
 const app = express();
 
@@ -38,6 +39,9 @@ const sessionConfig = {
     httpOnly: true, // * куки только по http
   },
 };
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/' })
+
 
 app.use(session(sessionConfig));
 
@@ -52,7 +56,41 @@ app.get('/', (req, res) => {
 });
 
 app.use('/user', userRoute);
+app.use('/upload', uploadRoute);
+///------------------------------------------------------------------------
 
-app.listen(PORT, async () => {
-  console.log(`Сервер поднят на ${PORT} порту!`);
-});
+app.post('/profile', upload.single('avatar'), function (req, res, next) {
+  // req.file - файл `avatar`
+  // req.body сохранит текстовые поля, если они будут
+})
+
+app.post('/photos/upload', upload.array('photos', 12), function (req, res, next) {
+  // req.files - массив файлов `photos`
+  // req.body сохранит текстовые поля, если они будут
+})
+
+const cpUpload = upload.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
+app.post('/cool-profile', cpUpload, function (req, res, next) {
+  // req.files - объект (String -> Array), где fieldname - ключ, и значение - массив файлов
+  //
+  // например:
+  //  req.files['avatar'][0] -> File
+  //  req.files['gallery'] -> Array
+  //
+  // req.body сохранит текстовые поля, если они будут
+})
+
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, '/tmp/my-uploads')
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.fieldname + '-' + Date.now())
+//   }
+// })
+
+// const upload = multer({ storage: storage })
+
+// app.listen(PORT, async () => {
+//   console.log(`Сервер поднят на ${PORT} порту!`);
+// });
