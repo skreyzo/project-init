@@ -5,9 +5,9 @@ function RegisterForm() {
   return (
     <Layout title="Form">
       <h1>Sign UP</h1>
-      <form action="/" method="POST">
-        <input type="text" name="name" placeholder="name" />
-        <input type="text" name="surname" placeholder="surname" />
+      <form action="/user/register" method="POST">
+        <input type="text" name="firstname" placeholder="firstname" />
+        <input type="text" name="lastname" placeholder="lastname" />
         <input type="password" name="password" placeholder="password" />
         <input type="email" name="email" placeholder="email" />
         <button type="submit">Register!</button>
