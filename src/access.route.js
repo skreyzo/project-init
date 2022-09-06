@@ -67,7 +67,7 @@ router.get('/albums', async (req, res) => {// страница с альбома
       const album = await Albums.findAll({ where: { id: right.albumId } });
       renderTemplate(Albums, { album, user: req.app.locals.userId }, res);
     } else {
-      res.send('Sorry, there is nothing to view');
+      res.send('Sorry, access denied');
     }
   }
 });
