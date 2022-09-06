@@ -42,7 +42,7 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 
 app.use((req, res, next) => {
-  app.locals.userName = req.session?.userName; // User.firstname
+  app.locals.userName = req.session?.firstname; // User.firstname
   app.locals.userId = req.session?.userId; // userId уточнить при создании юзера!!!
   next();
 });

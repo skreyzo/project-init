@@ -7,7 +7,7 @@ const RegisterForm = require('../views/RegisterForm');
 const Main = require('../views/Main');
 //const MyAlboms = require('../views/MyAlboms');
 
-//const { User } = require('../db/models');
+const { User } = require('../db/models');
 
 // регистрация
 route.get('/register', (req, res) => {
@@ -26,7 +26,7 @@ route.post('/register', async (req, res) => {
   console.log(user);
   req.session.firstname = user.firstname;
   req.session.email = user.email;
-  req.session.userid = user.id;
+  req.session.userId = user.id;
   res.redirect('/user/login');
 });
 
@@ -42,7 +42,7 @@ route.post('/login', async (req, res) => {
   if (user) {
     if (req.body.password === user.password) {
       req.session.email = user.email;
-      req.session.userid = user.id;
+      req.session.userId = user.id;
       res.redirect(`/user/${user.id}`);
     } else {
       return res.send('wrong password');

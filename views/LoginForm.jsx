@@ -5,7 +5,7 @@ function LoginForm() {
   return (
     <Layout title="Form">
       <h1>Sign IN</h1>
-      <form action="/login" method="POST">
+      <form action="/user/login" method="POST">
         <input type="email" name="email" placeholder="email" />
         <input type="password" name="password" placeholder="password" />
         <button type="submit">Go In!</button>
