@@ -1,4 +1,4 @@
-const React = require('react');
+const React = require("react");
 
 module.exports = function Layout({ children, title }) {
   return (
@@ -50,7 +50,7 @@ module.exports = function Layout({ children, title }) {
                       <a
                         className="nav-link active"
                         aria-current="page"
-                        href="/"
+                        href="/upload"
                       >
                         MyAlbom
                       </a>
