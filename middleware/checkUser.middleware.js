@@ -1,5 +1,5 @@
 const checkUser = (req, res, next) => {
-  if (req.session.username) {
+  if (req.session.email) {
     next();
   } else {
     res.redirect('/');
@@ -7,3 +7,5 @@ const checkUser = (req, res, next) => {
 };
 
 module.exports = checkUser;
+
+

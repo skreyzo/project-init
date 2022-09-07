@@ -1,17 +1,44 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-function SignInForm() {
+function LoginForm() {
   return (
     <Layout title="Form">
-      <h1>Sign IN</h1>
-      <form action="/login" method="POST">
-        <input type="email" name="email" placeholder="email" />
-        <input type="password" name="password" placeholder="password" />
-        <button type="submit">Go In!</button>
+
+      <form
+        className="container container-sm position-absolute top-50 start-50 translate-middle w-25 border border-grey rounded p-3 bg-light"
+        action="/user/login"
+        method="POST"
+      >
+        <h1 className="label">Login</h1>
+        <div className="mb-3 ">
+          <label htmlFor="exampleInputPassword1" className="form-label">
+            Email
+          </label>
+          <input
+            type="email"
+            className="form-control"
+            id="exampleInputPassword1"
+            name="email"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="exampleInputPassword1" className="form-label">
+            Password
+          </label>
+          <input
+            type="password"
+            className="form-control"
+            id="exampleInputPassword1"
+            name="password"
+          />
+        </div>
+        <button type="submit" className="btn btn-danger">
+          Go In!
+        </button>
       </form>
     </Layout>
   );
 }
 
-module.exports = SignInForm;
+module.exports = LoginForm;

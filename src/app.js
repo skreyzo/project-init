@@ -6,7 +6,6 @@ const morgan = require('morgan');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 
-
 // раскомментить эти две строки после создания базы
 
 const dbConnectionCheck = require('../db/dbConnectCheck');
@@ -44,14 +43,19 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 
 app.use((req, res, next) => {
-  app.locals.userName = req.session?.userName;// User.firstname
-  app.locals.userId = req.session?.userId;// userId уточнить при создании юзера!!!
+  app.locals.firstname = req.session?.firstname; // User.firstname
+  app.locals.userId = req.session?.userId; // userId уточнить при создании юзера!!!
   next();
 });
 
+app.get('/', (req, res) => {
+  const user = req.session?.firstname;
+  console.log('userApp', user);
+  renderTemplate(Main, { user }, res);
+});
 
-app.use('/', userRoute);
-app.use('/profile', accessRoute);
+
+app.use('/user', userRoute);
 
 app.listen(PORT, async () => {
   console.log(`Сервер поднят на ${PORT} порту!`);

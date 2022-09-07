@@ -1,5 +1,61 @@
+body {
+  background-image: url(https://sun9-2.userapi.com/impg/ZmRXDilxvCzoywjt-LypgJGZ3Z9bNadoVmDgnw/qE8ZGFhfcjI.jpg?size=1920x985&quality=96&sign=2f98e4efb25e1b621eb3714f1a450e40&type=album);
+}
+
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
 }
+.footercontent {
+  padding: 0 40px 0 40px;
+  background: rgb(150, 150, 150);
+}
+.container {
+  opacity: 93%;
+}
+
+.label {
+  align-items: center;
+  text-align: center;
+}
+
+.fa-brands {
+  font-size: 24px;
+  color: rgb(230, 54, 54);
+  width: 35px;
+}
+.fa-solid{
+  font-size: 24px;
+  color: rgb(230, 54, 54);
+  width: 35px;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  width: 150px;
+  justify-content: space-between;
+  
+}
+.mainLogo{
+  border: solid 1px crimson;
+  width: 1400px;
+  height: 650px;
+  background: antiquewhite;
+  padding-left: 190px;
+}
+
+.disc {
+  font-size: 13px;
+  margin: auto;
+}
+
+.disc1 {
+  font-size: 17px;
+}
+
+.discMain {
+  padding: 10px 0 10px 0;
+}
+
