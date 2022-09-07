@@ -3,8 +3,12 @@ const route = require('express').Router();
 const renderTemplate = require('../lib/renderReactModule');
 
 const LoginForm = require('../views/LoginForm');
-const RegisterForm = require('../views/RegisterForm');
 const Main = require('../views/Main');
+const RegisterForm = require('../views/RegisterForm');
+
+const Main = require('../views/Main');
+
+const checkUser = require('../middleware/checkUser.middleware');
 //const MyAlboms = require('../views/MyAlboms');
 
 const { User } = require('../db/models');
@@ -15,17 +19,17 @@ route.get('/register', (req, res) => {
 });
 
 route.post('/register', async (req, res) => {
+
   const { password, email, firstname, lastname } = req.body;
-  console.log(req.body);
   const user = await User.create({
     password,
     email,
     firstname,
     lastname,
   });
-  console.log(user);
   req.session.firstname = user.firstname;
   req.session.email = user.email;
+
   req.session.userId = user.id;
   res.redirect('/user/login');
 });
@@ -43,6 +47,7 @@ route.post('/login', async (req, res) => {
     if (req.body.password === user.password) {
       req.session.email = user.email;
       req.session.userId = user.id;
+      req.session.firstname = user.firstname;
       res.redirect(`/user/${user.id}`);
     } else {
       return res.send('wrong password');
@@ -57,12 +62,17 @@ route.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
+route.get('/', (req, res) => {
+  renderTemplate(Main, null, res);
+});
+
 
 // поиск на юзера в бд
-route.get('/:id', async (req, res) => {
+route.get('/:id', checkUser, async (req, res) => {
   const user = await User.findByPk(req.params.id);
+  console.log('userRout',user);
   if (user) {
-    renderTemplate(Main, user.toJSON(), res);
+    renderTemplate(Main, { user }, res);
   } else {
     res.redirect('/');
   }

@@ -105,3 +105,7 @@ dist
 
 #Sessions ignore
 sessions
+views/RegisterForm.jsx
+routes/user.route.js
+src/app.js
+views/Profile.jsx
