@@ -53,6 +53,7 @@ module.exports = function Layout({ children, title, username }) {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                   <ul className="navbar-nav">
+
                     {username?.user ? (
                       <>
                         <li className="nav-item">
