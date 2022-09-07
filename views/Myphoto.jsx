@@ -1,7 +1,7 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-function Album({ albums }) {
+function Myphoto({ albums }) {
   return (
     <Layout title="Album">
       <script defer src="js/album.js"/>
@@ -29,4 +29,4 @@ function Album({ albums }) {
   );
 }
 
-module.exports = Album;
+module.exports = Myphoto;

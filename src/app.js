@@ -70,9 +70,6 @@ app.post("/profile", upload.single("avatar"), async function (req, res, next) {
   try {
     const { path } = req.file;
     const { comment } = req.body;
-
-    console.log(comment);
-
     await Photo.create({ addres: path, comment: comment });
     res.send("загрузил");
   } catch (error) {
@@ -89,8 +86,7 @@ app.use("/user", userRoute);
 app.use("/album", albumRoute);
 
 app.get('/', (req, res) => {
-  const user = req.session?.firstname;
-  console.log('userApp', user);
+  const user = req.session?.firstname;  
   renderTemplate(Main, { user }, res);
 });
 
