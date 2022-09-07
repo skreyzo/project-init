@@ -48,13 +48,9 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  const username = req.session.firstname;
-  console.log('user', username);
-  if (username) {
-    renderTemplate(Main, { username }, res);
-  } else {
-    renderTemplate(Main, {}, res);
-  }
+  const user = req.session?.firstname;
+  console.log('userApp', user);
+  renderTemplate(Main, { user }, res);
 });
 
 app.use('/user', userRoute);

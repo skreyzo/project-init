@@ -62,8 +62,9 @@ route.get('/logout', (req, res) => {
 // поиск на юзера в бд
 route.get('/:id', checkUser, async (req, res) => {
   const user = await User.findByPk(req.params.id);
+  console.log('userRout',user);
   if (user) {
-    renderTemplate(Main, user.toJSON(), res);
+    renderTemplate(Main, { user }, res);
   } else {
     res.redirect('/');
   }
