@@ -1,6 +1,11 @@
 const React = require("react");
+const {
+  proposalSyntaxPlugins,
+} = require('@babel/preset-env/lib/shipped-proposals');
+const React = require('react');
 
-module.exports = function Layout({ children, title }) {
+module.exports = function Layout({ children, title, username }) {
+  console.log('userLayout', username);
   return (
     <html lang="en">
       <head>
@@ -23,16 +28,19 @@ module.exports = function Layout({ children, title }) {
           crossOrigin="anonymous"
         />
         <script defer src="/js/publicScript.js" />
+        <script
+          src="https://kit.fontawesome.com/55a9ffd6d9.js"
+          crossorigin="anonymous"
+        ></script>
         <link rel="stylesheet" href="/css/publicStyles.css" />
+        <link rel="stylesheet" href="/css/logo.css" />
       </head>
       <body>
         <div id="root">
           <header>
             <nav className="navbar navbar-expand-lg bg-light">
               <div className="container-fluid">
-                <a className="navbar-brand" href="/">
-                  MyPhoto
-                </a>
+                <i className="fa-solid fa-icons"></i>
                 <button
                   className="navbar-toggler"
                   type="button"
@@ -46,35 +54,44 @@ module.exports = function Layout({ children, title }) {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                   <ul className="navbar-nav">
-                    <li className="nav-item">
-                      <a
-                        className="nav-link active"
-                        aria-current="page"
-                        href="/upload"
-                      >
-                        MyAlbom
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/profile">
-                        Profile
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/">
-                        Logout
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/user/login">
-                        Login
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/user/register">
-                        Registration
-                      </a>
-                    </li>
+
+
+                    {username?.user ? (
+                      <>
+                        <li className="nav-item">
+                          <a
+                            className="nav-link active"
+                            aria-current="page"
+                            href="/myalbom"
+                          >
+                            MyAlbom
+                          </a>
+                        </li>
+                        <li className="nav-item">
+                          <a className="nav-link" href="/profile">
+                            Profile
+                          </a>
+                        </li>
+                        <li className="nav-item">
+                          <a className="nav-link" href="/user/logout">
+                            Logout
+                          </a>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li className="nav-item">
+                          <a className="nav-link" href="/user/login">
+                            Login
+                          </a>
+                        </li>
+                        <li className="nav-item">
+                          <a className="nav-link" href="/user/register">
+                            Registration
+                          </a>
+                        </li>
+                      </>
+                    )}
                   </ul>
                 </div>
               </div>
@@ -86,8 +103,22 @@ module.exports = function Layout({ children, title }) {
             </div>
           </div>
           <div className="footer">
-            <footer className=" d-flex flex-wrap justify-content-between align-items-center min-height:100% bg-dark">
-              <h1 className="footer__title text-light">Footer</h1>
+            <footer className="footercontent d-flex flex-wrap justify-content-between align-items-center min-height:100% ">
+              <div className="discMain">
+                <h3 className="disc1 footer__title text-dark">
+                  Go Make Something Awesome
+                </h3>
+                <h6 className="disc footer__title text-dark">
+                  Made with 🤍 in mother Russia
+                </h6>
+              </div>
+              <div className="logo">
+                <h6 className="disc footer__title text-dark">Contact Us</h6>
+                <a href="https://github.com/skreyzo/project-init">
+                  <i className="fa-brands fa-github"></i>
+                </a>
+                <i className="fa-brands fa-telegram"></i>
+              </div>
             </footer>
           </div>
         </div>

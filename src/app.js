@@ -9,7 +9,9 @@ const FileStore = require("session-file-store")(session);
 const dbConnectionCheck = require("../db/dbConnectCheck");
 dbConnectionCheck();
 
-const renderTemplate = require("../lib/renderReactModule");
+
+const dbConnectionCheck = require('../db/dbConnectCheck');
+dbConnectionCheck();
 
 const Main = require("../views/Main"); //главная страница
 const Upload = require("../views/Upload");
@@ -21,6 +23,9 @@ const { Photo } = require("../db/models");
 
 const multer = require("multer");
 const upload = multer({ dest: "public/uploads/" });
+// const Main = require('../views/Main'); //главная страница
+const userRoute = require('../routes/user.route'); //регистер и авторизэйшн
+const accessRoute = require('../routes/accessRoute'); //регистер и авторизэйшн
 
 const app = express();
 
@@ -48,7 +53,7 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 
 app.use((req, res, next) => {
-  app.locals.userName = req.session?.firstname; // User.firstname
+  app.locals.firstname = req.session?.firstname; // User.firstname
   app.locals.userId = req.session?.userId; // userId уточнить при создании юзера!!!
   next();
 });
@@ -86,6 +91,15 @@ app.post("/profile", upload.single("avatar"), async function (req, res, next) {
 
 app.use("/user", userRoute);
 app.use("/album", albumRoute);
+
+app.get('/', (req, res) => {
+  const user = req.session?.firstname;
+  console.log('userApp', user);
+  renderTemplate(Main, { user }, res);
+});
+
+
+app.use('/user', userRoute);
 
 app.listen(PORT, async () => {
   console.log(`Сервер поднят на ${PORT} порту!`);
