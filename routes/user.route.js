@@ -3,9 +3,7 @@ const route = require('express').Router();
 const renderTemplate = require('../lib/renderReactModule');
 
 const LoginForm = require('../views/LoginForm');
-const Main = require('../views/Main');
 const RegisterForm = require('../views/RegisterForm');
-
 const Main = require('../views/Main');
 
 const checkUser = require('../middleware/checkUser.middleware');

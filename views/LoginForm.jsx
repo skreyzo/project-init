@@ -29,7 +29,7 @@ function LoginForm() {
           <input
             type="password"
             className="form-control"
-            id="exampleInputPassword1"
+            id="exampleInputPassword2"
             name="password"
           />
         </div>

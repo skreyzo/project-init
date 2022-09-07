@@ -2,7 +2,6 @@ const React = require("react");
 const {
   proposalSyntaxPlugins,
 } = require('@babel/preset-env/lib/shipped-proposals');
-const React = require('react');
 
 module.exports = function Layout({ children, title, username }) {
   console.log('userLayout', username);
@@ -88,6 +87,11 @@ module.exports = function Layout({ children, title, username }) {
                         <li className="nav-item">
                           <a className="nav-link" href="/user/register">
                             Registration
+                          </a>
+                        </li>
+                        <li className="nav-item">
+                          <a className="nav-link" href="/">
+                            main
                           </a>
                         </li>
                       </>

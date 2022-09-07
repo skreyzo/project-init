@@ -8,15 +8,14 @@ const FileStore = require("session-file-store")(session);
 
 const dbConnectionCheck = require("../db/dbConnectCheck");
 dbConnectionCheck();
+const renderTemplate = require('../lib/renderReactModule');
 
 
-const dbConnectionCheck = require('../db/dbConnectCheck');
-dbConnectionCheck();
+// const dbConnectionCheck = require('../db/dbConnectCheck');
+// dbConnectionCheck();
 
 const Main = require("../views/Main"); //главная страница
 const Upload = require("../views/Upload");
-const userRoute = require("../routes/user.route"); //регистер и авторизэйшн
-
 const albumRoute = require("../routes/album.route");
 
 const { Photo } = require("../db/models");
@@ -58,9 +57,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  renderTemplate(Main, {}, res);
-});
 
 app.get("/upload", (req, res) => {
   renderTemplate(Upload, {}, res);
@@ -97,9 +93,6 @@ app.get('/', (req, res) => {
   console.log('userApp', user);
   renderTemplate(Main, { user }, res);
 });
-
-
-app.use('/user', userRoute);
 
 app.listen(PORT, async () => {
   console.log(`Сервер поднят на ${PORT} порту!`);
