@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
-const Profile = require('../views/entries/Profile');// уточнить
+const Profile = require('../views/Profile');// уточнить
 
-const renderTemplate = require('../lib/renderTemplate');
+const renderTemplate = require('../lib/renderReactModule');
 
 const { Album } = require('../db/models');// уточнить
 // const { User } = require('../db/models');// уточнить
@@ -62,10 +62,10 @@ router.post('/', async (req, res) => {
 
 
 
-router.get('/profile', async (req, res) => {// страница с альбомами
+router.get('/', async (req, res) => {// страница с альбомами
   try {
     // выбираем свои альбомы 
-    const myAlbums = await Albums.findAll({ where: { userid: req.session?.userId } });
+    const myAlbums = await Album.findAll({ where: { userid: req.session?.userId } });
     // выбираем разрешенные
     const grantedAlbums = await AccessRight.findAll({ where: { userid: req.session?.userId } }); // деструктурировать?
     if (myAlbums || grantedAlbums) {

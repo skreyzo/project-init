@@ -3,7 +3,10 @@ const route = require('express').Router();
 const renderTemplate = require('../lib/renderReactModule');
 
 const LoginForm = require('../views/LoginForm');
+const Main = require('../views/Main');
 const RegisterForm = require('../views/RegisterForm');
+const { User } = require('../db/models');// уточнить
+
 //const MyAlboms = require('../views/MyAlboms');
 
 // регистрация
@@ -12,12 +15,12 @@ route.get('/register', (req, res) => {
 });
 
 route.post('/register', async (req, res) => {
-  const { password, email, name, surname } = req.body;
+  const { password, email, firstname, lastname } = req.body;
   const user = await User.create({
     password,
     email,
-    name,
-    surname,
+    firstname,
+    lastname,
   });
   req.session.username = user.name;
   req.session.email = user.email;
@@ -52,6 +55,10 @@ route.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
+route.get('/', (req, res) => {
+  renderTemplate(Main, null, res);
+});
+
 
 // поиск на юзера в бд
 // route.get('/:id', async (req, res) => {

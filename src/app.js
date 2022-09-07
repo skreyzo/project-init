@@ -9,13 +9,14 @@ const FileStore = require('session-file-store')(session);
 
 // раскомментить эти две строки после создания базы
 
-// const dbConnectionCheck = require('../db/dbConnectCheck');
-// dbConnectionCheck();
+const dbConnectionCheck = require('../db/dbConnectCheck');
+dbConnectionCheck();
 
 const renderTemplate = require('../lib/renderReactModule');
 
-const Main = require('../views/Main'); //главная страница
+// const Main = require('../views/Main'); //главная страница
 const userRoute = require('../routes/user.route'); //регистер и авторизэйшн
+const accessRoute = require('../routes/accessRoute'); //регистер и авторизэйшн
 
 const app = express();
 
@@ -49,7 +50,8 @@ app.use((req, res, next) => {
 });
 
 
-
+app.use('/user', userRoute);
+app.use('/profile', accessRoute);
 
 app.listen(PORT, async () => {
   console.log(`Сервер поднят на ${PORT} порту!`);
