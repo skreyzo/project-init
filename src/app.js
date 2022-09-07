@@ -15,6 +15,8 @@ const Main = require("../views/Main"); //главная страница
 const Upload = require("../views/Upload");
 const userRoute = require("../routes/user.route"); //регистер и авторизэйшн
 
+const albumRoute = require("../routes/album.route");
+
 const { Photo } = require("../db/models");
 
 const multer = require("multer");
@@ -83,6 +85,7 @@ app.post("/profile", upload.single("avatar"), async function (req, res, next) {
 // ----------------------------------------------------
 
 app.use("/user", userRoute);
+app.use("/album", albumRoute);
 
 app.listen(PORT, async () => {
   console.log(`Сервер поднят на ${PORT} порту!`);
