@@ -66,12 +66,12 @@ module.exports = function Layout({ children, title }) {
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/user/login">
+                      <a className="nav-link" href="/login">
                         Login
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/user/register">
+                      <a className="nav-link" href="/register">
                         Registration
                       </a>
                     </li>

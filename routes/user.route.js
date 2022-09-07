@@ -15,17 +15,19 @@ route.get('/register', (req, res) => {
 });
 
 route.post('/register', async (req, res) => {
-  const { password, email, firstname, lastname } = req.body;
+  console.log('18====',req.body)
+  
+  const { password, email, name, lastname } = req.body;
   const user = await User.create({
     password,
     email,
-    firstname,
+    firstname: name,
     lastname,
   });
   req.session.username = user.name;
   req.session.email = user.email;
   req.session.userid = user.id;
-  res.redirect('/user/login');
+  res.redirect('/login');
 });
 
 // авторизация

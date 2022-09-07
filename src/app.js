@@ -50,7 +50,7 @@ app.use((req, res, next) => {
 });
 
 
-app.use('/user', userRoute);
+app.use('/', userRoute);
 app.use('/profile', accessRoute);
 
 app.listen(PORT, async () => {
