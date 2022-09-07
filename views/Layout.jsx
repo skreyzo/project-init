@@ -1,3 +1,4 @@
+const React = require("react");
 const {
   proposalSyntaxPlugins,
 } = require('@babel/preset-env/lib/shipped-proposals');
@@ -53,6 +54,7 @@ module.exports = function Layout({ children, title, username }) {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                   <ul className="navbar-nav">
+
 
                     {username?.user ? (
                       <>
