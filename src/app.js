@@ -15,6 +15,8 @@ const Main = require("../views/Main"); //главная страница
 const Upload = require("../views/Upload");
 const userRoute = require("../routes/user.route"); //регистер и авторизэйшн
 
+const { Photo } = require("../db/models");
+
 const multer = require("multer");
 const upload = multer({ dest: "public/uploads/" });
 
@@ -60,10 +62,15 @@ app.get("/upload", (req, res) => {
 // ----------------------------------------------------
 // Здесь подключаю загрузку файлов
 
-app.post("/profile", upload.single("avatar"), function (req, res, next) {
-  console.log("путь========>", req.file.path);  // этот путь к фото надо загрузить в БД
-
+app.post("/profile", upload.single("avatar"), async function (req, res, next) {
+  // console.log("путь========>", path); // этот путь к фото надо загрузить в БД
   try {
+    const { path } = req.file;
+    const { comment } = req.body;
+
+    console.log(comment);
+
+    await Photo.create({ addres: path, comment: comment });
     res.send("загрузил");
   } catch (error) {
     console.log(error);
@@ -71,7 +78,6 @@ app.post("/profile", upload.single("avatar"), function (req, res, next) {
   // req.file - файл `avatar`
   // req.body сохранит текстовые поля, если они будут
 });
-
 
 // Здесь подключаю загрузку файлов
 // ----------------------------------------------------
