@@ -11,30 +11,16 @@ function Album({ albums, userAlbum }) {
         <button type="submit">Add Album</button>
       </form>
       <div className="Cover">
-        {albums.map((el) => (
-          <div className="albumCard" style={{ width: '18rem' }}>
-            <div className="card-body">
-              <h5 className="card-title">{el.title}</h5>
-              <input id={el.id} type="text" name="title" />
-              <button
-                data-btn="access"
-                id={el.id}
-                type="button"
-                className="btn btn-danger grant"
-              >
-                Дать права!
-              </button>
-              <a href={`/album/${el.id}`} className="card-link">
-                Подробнее
-              </a>
-              <button
-                data-btn="delete"
-                id={el.id}
-                type="button"
-                className="btn btn-danger delete"
-              >
-                Удалить альбом!
-              </button>
+        {
+          albums.map((el) => (
+            <div className="albumCard" style={{ width: '18rem' }} key={el.id}>
+              <div className="card-body">
+                <h5 className="card-title">{el.title}</h5>                                             
+                <input id={el.id} type="text" name="title" />                  
+                <button data-btn="access" id={el.id} type="button" className="btn btn-danger grant">Дать права!</button>
+                <a href={`/album/${el.id}`} className="card-link">Подробнее</a>
+                <button data-btn="delete" id={el.id} type="button" className="btn btn-danger delete">Удалить альбом!</button>
+              </div>
             </div>
           </div>
         ))}

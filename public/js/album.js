@@ -22,7 +22,6 @@ form.addEventListener('submit', async (event) => {
   newCard.innerHTML = `
   <div class="card-body">
     <h5 class="card-title">${result.title}</h5>                             
-
     <input type="text" name="title" />                  
     <button data-btn="access" id=${result.id} type="button" class="btn btn-danger">Добавить</button>
     <a href="/album/${result.id}" class="card-link">Подробнее</a>
@@ -59,10 +58,10 @@ form.addEventListener('submit', async (event) => {
 
 cover.addEventListener('click', async (event) => {
    try {
+     const { id } = event.target;
+     const {value} = document.getElementById(`${id}`)
       if (event.target.tagName === 'BUTTON') {
     //console.log('BTN', event.target.id, event.target.tagName);
-    const { id } = event.target;
-    const input = document.getElementById(`${id}`)
     //console.log('eventttttttttttttt', event.target.dataset.btn);
     if(event.target.dataset.btn === 'delete') {
       const response = await fetch('/album/delete', {
@@ -83,7 +82,7 @@ cover.addEventListener('click', async (event) => {
         headers: {
           'Content-type': 'application/json',
         },
-        body: JSON.stringify({ input }),
+        body: JSON.stringify({ value, id }),
       });
       const result = await response.json();
     // console.log(response);

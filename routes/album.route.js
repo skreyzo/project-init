@@ -42,12 +42,9 @@ route.post('/', async (req, res) => {
 route.post('/right', async (req, res) => {
   console.log('Наш консоль', req.body);
   const { value, id } = req.body;
-  try {
-    // найти по имени человека в базе
-    const [foundPeople] = await User.findAll({
-      where: { firstname: value },
-      raw: true,
-    });
+
+  try { // найти по имени человека в базе
+    const [foundPeople] = await User.findAll({ where: { email: value }, raw: true })
     // console.log('Наш hero', foundPeople.id)
     //достать нужный альбом
     const sharing = await Album.findByPk(id);
@@ -85,7 +82,9 @@ route.post('/right', async (req, res) => {
       res
     );
   }
-});
+
+}); 
+
 
 /* // /tasks/delete
 route.delete('/delete', async (req, res) => {
