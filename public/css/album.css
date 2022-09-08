@@ -1,0 +1,20 @@
+.titleAlbom{
+padding: 10px;
+}
+.card-body{
+padding: 50px;
+}
+.picCard{
+    width: 300px;
+    height: 300px;
+    border: solid 1px black;
+    
+}
+.Cover{
+    display: flex;
+    flex-direction: row;
+}
+
+.pic{
+    height: 200px;
+}

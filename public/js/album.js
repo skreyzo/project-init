@@ -21,13 +21,31 @@ form.addEventListener('submit', async (event) => {
   newCard.style.width = '18rem';
   newCard.innerHTML = `
   <div class="card-body">
-    <h5 class="card-title">${result.title}</h5>                             
-    <input type="text" name="title" />                  
-    <button data-btn="access" id=${result.id} type="button" class="btn btn-danger">Добавить</button>
-    <a href="/album/${result.id}" class="card-link">Подробнее</a>
-    <button data-btn="delete" id=${result.id} type="button" class="btn btn-danger">Удалить</button>
-  </div>
+  <div class="picCard"></div>
+  <h5 class="card-title">${result.title}</h5>
+  <input id=${result.id} type="text" name="title" />
+  <button
+    data-btn="access"
+    id=${result.id}
+    type="button"
+    class="btn btn-danger grant"
+  >
+    Дать права!
+  </button>
+  <a href="/album/${result.id}" class="card-link">
+    Подробнее
+  </a>
+  <button
+    data-btn="delete"
+    id=${result.id}
+    type="button"
+    class="btn btn-danger delete"
+  >
+    Удалить альбом!
+  </button>
+</div>
   `;
+  
   cover.appendChild(newCard);
   event.target.title.value = '';
 });

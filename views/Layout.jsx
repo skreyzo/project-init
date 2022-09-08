@@ -33,6 +33,7 @@ module.exports = function Layout({ children, title, username }) {
         <link rel="stylesheet" href="/css/publicStyles.css" />
         <link rel="stylesheet" href="/css/logo.css" />
         <link rel="stylesheet" href="/css/button.css" />
+        <link rel="stylesheet" href="/css/album.css" />
       </head>
       <body>
         <div id="root">
@@ -62,7 +63,7 @@ module.exports = function Layout({ children, title, username }) {
                       <>
                         <li className="nav-item">
                           <a
-                            className="nav-link active"
+                            className="nav-link"
                             aria-current="page"
                             href="/album"
                           >

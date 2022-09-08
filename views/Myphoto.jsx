@@ -2,6 +2,7 @@ const React = require('react');
 const Layout = require('./Layout');
 
 function Myphoto({ photoId, photos, userAlbum }) {
+  console.log(photos);
   return (
     <Layout title="Main" username={userAlbum.firstname}>
       <form
@@ -18,9 +19,9 @@ function Myphoto({ photoId, photos, userAlbum }) {
           <div className="albumCard" style={{ width: '18rem' }}>
             <div className="card-body">
               <h5 className="card-title">{el.comment}</h5>
-              <a href={el.addres} className="card-link">
+              {/* <a href={el.addres} className="card-link">
                 MyPhoto
-              </a>
+              </a> */}
               <button
                 data-btn="delete"
                 id={el.id}
@@ -29,6 +30,7 @@ function Myphoto({ photoId, photos, userAlbum }) {
               >
                 Удалить фото!
               </button>
+              <img src={`${el.addres}`} alt="" className='pic'/>
             </div>
           </div>
         ))}

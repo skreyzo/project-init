@@ -58,7 +58,6 @@ route.post('/right', async (req, res) => {
         albumid: sharing.id, // уточнить
         userid: foundPeople.id, // уточнить
       });
-      console.log('50=====>', newRight);
 
       res.send('vse ok'); // уточнить страницу
     } else {
@@ -144,11 +143,11 @@ route.post(
     try {
       console.log('=>>>>>>>>>>>>>>>>>>>IIIIIIId', req.params.photoid);
       //const thisAlbum = await Album.findByPk(req.params.id, { raw: true });
-      const { path } = req.file;
+      const { path } = req.file
       const { comment } = req.body;
       await Photo.create({
         albumid: req.params.photoid,
-        addres: path,
+        addres: path.slice(6),
         comment: comment,
       });
       res.send('загрузил');
