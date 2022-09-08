@@ -4,7 +4,6 @@ const {
 } = require('@babel/preset-env/lib/shipped-proposals');
 
 module.exports = function Layout({ children, title, username }) {
-
   return (
     <html lang="en">
       <head>
@@ -59,7 +58,7 @@ module.exports = function Layout({ children, title, username }) {
                   id="navbarNav"
                 >
                   <ul className="navbar-nav">
-                    {username?.user ? (
+                    {username ? (
                       <>
                         <li className="nav-item">
                           <a
@@ -77,12 +76,12 @@ module.exports = function Layout({ children, title, username }) {
                         </li>
                         <li className="nav-item">
                           <a className="nav-link">
-                            {username?.user?.dataValues?.firstname}
+                            {username}
                           </a>
                         </li>
                         <li className="nav-item position-absolute top-0 end-0">
                           <a className="nav-link" href="/user/logout">
-                            <i class="fa-solid fa-person-through-window"></i>
+                            <i className="fa-solid fa-person-through-window"></i>
                           </a>
                         </li>
                       </>

@@ -1,13 +1,13 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-function Album({ albums }) {
+function Album({ albums, userAlbum }) {
   return (
-    <Layout title="Album">
-      <script defer src="js/album.js"/>
+    <Layout title="Album" username={userAlbum.firstname}>
+      <script defer src="js/album.js" />
       <h1>Add Album</h1>
       <form name="albumForm" action="/album/" method="POST">
-        <input type="text" name="title" />        
+        <input type="text" name="title" />
         <button type="submit">Add Album</button>
       </form>
       <div className="Cover">
@@ -22,8 +22,8 @@ function Album({ albums }) {
                 <button data-btn="delete" id={el.id} type="button" className="btn btn-danger delete">Удалить альбом!</button>
               </div>
             </div>
-          ))
-        }
+          </div>
+        ))}
       </div>
     </Layout>
   );

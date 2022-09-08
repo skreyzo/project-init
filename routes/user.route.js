@@ -17,7 +17,6 @@ route.get('/register', (req, res) => {
 });
 
 route.post('/register', async (req, res) => {
-
   const { password, email, firstname, lastname } = req.body;
   const user = await User.create({
     password,
@@ -46,7 +45,7 @@ route.post('/login', async (req, res) => {
       req.session.email = user.email;
       req.session.userId = user.id;
       req.session.firstname = user.firstname;
-      res.redirect(`/user/${user.id}`);
+      res.redirect(`/album`);
     } else {
       return res.send('wrong password');
     }
@@ -63,7 +62,6 @@ route.get('/logout', (req, res) => {
 route.get('/', (req, res) => {
   renderTemplate(Main, null, res);
 });
-
 
 // поиск на юзера в бд
 route.get('/:id', checkUser, async (req, res) => {
