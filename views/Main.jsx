@@ -1,8 +1,7 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-function Main(user) {
- // console.log('userMain', user);
+function Main({user}) {
   return (
     <Layout title="Main" username={user}>
       <div className="mainLogo position-absolute align-items-center top-50 start-50 translate-middle ">
@@ -45,7 +44,7 @@ function Main(user) {
 
         </div>
       </div>
-      {user?.user ? (
+      {user ? (
         <a href="/user/register"></a>
       ) : (
         <>
