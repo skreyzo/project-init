@@ -4,7 +4,7 @@ const {
 } = require('@babel/preset-env/lib/shipped-proposals');
 
 module.exports = function Layout({ children, title, username }) {
-  console.log('userLayout', username?.user?.dataValues?.firstname);
+
   return (
     <html lang="en">
       <head>
@@ -29,7 +29,7 @@ module.exports = function Layout({ children, title, username }) {
         <script defer src="/js/publicScript.js" />
         <script
           src="https://kit.fontawesome.com/55a9ffd6d9.js"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         ></script>
         <link rel="stylesheet" href="/css/publicStyles.css" />
         <link rel="stylesheet" href="/css/logo.css" />
@@ -65,7 +65,7 @@ module.exports = function Layout({ children, title, username }) {
                           <a
                             className="nav-link active"
                             aria-current="page"
-                            href="/myalbom"
+                            href="/album"
                           >
                             MyAlbom
                           </a>

@@ -2,7 +2,7 @@ const React = require('react');
 const Layout = require('./Layout');
 
 function Main(user) {
-  console.log('userMain', user);
+ // console.log('userMain', user);
   return (
     <Layout title="Main" username={user}>
       <div className="mainLogo position-absolute align-items-center top-50 start-50 translate-middle ">
@@ -42,6 +42,7 @@ function Main(user) {
         </div>
         <div className="flowDiv">
           <img className="flow" src="./img/flow.png" alt="" />
+
         </div>
       </div>
       {user?.user ? (
