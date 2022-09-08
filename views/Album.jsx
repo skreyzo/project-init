@@ -5,10 +5,10 @@ function Album({ albums, userAlbum }) {
   return (
     <Layout title="Album" username={userAlbum.firstname}>
       <script defer src="js/album.js" />
-      <h1>Add Album</h1>
+      <h1>Мои альбомы</h1>
       <form name="albumForm" action="/album/" method="POST">
         <input type="text" name="title" />
-        <button type="submit">Add Album</button>
+        <button type="submit">Новый альбом</button>
       </form>
       <div className="Cover">
         {
@@ -18,11 +18,10 @@ function Album({ albums, userAlbum }) {
                 <h5 className="card-title">{el.title}</h5>                                             
                 <input id={el.id} type="text" name="title" />                  
                 <button data-btn="access" id={el.id} type="button" className="btn btn-danger grant">Дать права!</button>
-                <a href={`/album/${el.id}`} className="card-link">Подробнее</a>
+                <a href={`/album/${el.id}`} className="card-link">Фото!</a>
                 <button data-btn="delete" id={el.id} type="button" className="btn btn-danger delete">Удалить альбом!</button>
               </div>
-            </div>
-          </div>
+            </div>          
         ))}
       </div>
     </Layout>

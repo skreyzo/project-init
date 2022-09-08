@@ -60,7 +60,7 @@ route.post('/right', async (req, res) => {
       });
       console.log('50=====>', newRight);
 
-      res.send('vse ok'); // уточнить страницу
+      res.sendStatus(200); // уточнить страницу
     } else {
       renderTemplate(
         Error,
@@ -142,15 +142,15 @@ route.post(
   async function (req, res, next) {
     console.log('путь========>', req.file); // этот путь к фото надо загрузить в БД
     try {
-      console.log('=>>>>>>>>>>>>>>>>>>>IIIIIIId', req.params.photoid);
+      
       //const thisAlbum = await Album.findByPk(req.params.id, { raw: true });
-      const { path } = req.file;
+      const { path } = req.file;      
       const { comment } = req.body;
       await Photo.create({
         albumid: req.params.photoid,
-        addres: path,
+        addres: path.slice(6),
         comment: comment,
-      });
+      });      
       res.send('загрузил');
     } catch (error) {
       console.log(error);

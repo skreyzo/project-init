@@ -23,9 +23,9 @@ form.addEventListener('submit', async (event) => {
   <div class="card-body">
     <h5 class="card-title">${result.title}</h5>                             
     <input type="text" name="title" />                  
-    <button data-btn="access" id=${result.id} type="button" class="btn btn-danger">Добавить</button>
-    <a href="/album/${result.id}" class="card-link">Подробнее</a>
-    <button data-btn="delete" id=${result.id} type="button" class="btn btn-danger">Удалить</button>
+    <button data-btn="access" id=${result.id} type="button" class="btn btn-danger">Дать права!</button>
+    <a href="/album/${result.id}" class="card-link">Фото!</a>
+    <button data-btn="delete" id=${result.id} type="button" class="btn btn-danger">Удалить альбом!</button>
   </div>
   `;
   cover.appendChild(newCard);
@@ -76,7 +76,7 @@ cover.addEventListener('click', async (event) => {
     }
     // console.log(response);
     }
-    if(event.target.dataset.btn === 'access') {
+    if(event.target.dataset.btn === 'access' && value) {
       const response = await fetch('/album/right', {
         method: 'POST',
         headers: {
@@ -84,7 +84,10 @@ cover.addEventListener('click', async (event) => {
         },
         body: JSON.stringify({ value, id }),
       });
-      const result = await response.json();
+      if (response.status === 200) {
+        alert(`Вы дали права пользователю  с почтой ${value}!`)
+      }
+      
     // console.log(response);
     }
   }
