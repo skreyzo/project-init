@@ -13,7 +13,7 @@ function Myphoto({ photoId, photos, userAlbum }) {
         <input type="text" name="comment" />
         <button>Upload pic</button>
       </form>
-      <div className="Cover">
+      <div className="Foto">
         {photos.map((el) => (
           <div className="albumCard" style={{ width: '18rem' }}>
             <div className="card-body">
@@ -22,10 +22,10 @@ function Myphoto({ photoId, photos, userAlbum }) {
                 MyPhoto
               </a>
               <button
-                data-btn="delete"
+                
                 id={el.id}
                 type="button"
-                className="btn btn-danger delete"
+                className="btn btn-danger deleteFoto"
               >
                 Удалить фото!
               </button>

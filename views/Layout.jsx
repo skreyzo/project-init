@@ -26,6 +26,7 @@ module.exports = function Layout({ children, title, username }) {
           crossOrigin="anonymous"
         />
         <script defer src="/js/publicScript.js" />
+        <script defer src="/js/photo.js" />
         <script
           src="https://kit.fontawesome.com/55a9ffd6d9.js"
           crossOrigin="anonymous"

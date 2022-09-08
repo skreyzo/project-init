@@ -140,7 +140,7 @@ route.post(
   '/:photoid',
   upload.single('photo'),
   async function (req, res, next) {
-    console.log('путь========>', req.file); // этот путь к фото надо загрузить в БД
+    //console.log('путь========>', req.file); // этот путь к фото надо загрузить в БД
     try {
       
       //const thisAlbum = await Album.findByPk(req.params.id, { raw: true });
@@ -168,6 +168,19 @@ route.delete('/delete', async (req, res) => {
   try {
     const { id } = req.body;
     await Album.destroy({ where: { id } });
+    //res.send('OKKKKKKKKKKKKKKKKKKKKKK')
+    res.sendStatus(200);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+//! удалить фото
+route.delete('/fotodelete', async (req, res) => {
+  console.log('kggygygy', req.body);
+  try {
+    const { id } = req.body;
+    await Photo.destroy({ where: { id } });
     //res.send('OKKKKKKKKKKKKKKKKKKKKKK')
     res.sendStatus(200);
   } catch (error) {
