@@ -5,8 +5,8 @@ const deleteBtn = document.querySelector('.delete');
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
-  const title = event.target.title.value;  
-  //console.log({ title });
+  const title = event.target.title.value;
+  console.log({ title });
   const response = await fetch('/album', {
     method: 'POST',
     headers: {
@@ -22,6 +22,7 @@ form.addEventListener('submit', async (event) => {
   newCard.innerHTML = `
   <div class="card-body">
     <h5 class="card-title">${result.title}</h5>                             
+
     <input type="text" name="title" />                  
     <button data-btn="access" id=${result.id} type="button" class="btn btn-danger">Добавить</button>
     <a href="/album/${result.id}" class="card-link">Подробнее</a>
@@ -36,6 +37,7 @@ form.addEventListener('submit', async (event) => {
 
 //const grantBtn = document.querySelector('.grant')
 
+
 /* cover.addEventListener('click', async (event) => {
     // event.preventDefault();
     //console.log(event.target)
@@ -43,13 +45,14 @@ form.addEventListener('submit', async (event) => {
     const input = document.getElementById(`${id}`)
     //console.log(input.value)
     const response = await fetch('/album/right', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({ input }),
-      });
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({ value, id }),
+    });
     const result = await response.json();
+
 }); */
 
 //! Слушатель на удаление альбома

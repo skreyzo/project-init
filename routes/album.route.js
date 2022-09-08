@@ -1,5 +1,6 @@
 const route = require('express').Router();
 
+
 const { Album, AccessRight, Photo } = require('../db/models');
 
 const renderTemplate = require('../lib/renderReactModule');
@@ -13,7 +14,7 @@ const Myphoto = require("../views/Myphoto");
 
 route.get('/', async (req, res) => {
   try {
-    const albums = await Album.findAll({ where: { userid: req.session?.userId }, raw: true }); 
+    const albums = await Album.findAll({ where: { userid: req.session?.userId }, raw: true });
     renderTemplate(Albums, { albums }, res);
   } catch (error) {
     console.error(error);
@@ -22,7 +23,7 @@ route.get('/', async (req, res) => {
 // /tasks/form
 route.post('/', async (req, res) => {
   const { title } = req.body;
-   try {
+  try {
     const newAlb = await Album.create({ userid: req.session?.userId, title });
     res.json(newAlb);
   } catch (error) {
@@ -35,21 +36,27 @@ route.post('/', async (req, res) => {
 //! const Profile = require('../views/Profile');// уточнить
 
 // создание записи в таблице прав
-/* route.post('/right', async (req, res) => {
-    console.log('Наш консоль', req.body)
-  try {//достать нужный альбом 
-    const sharing = Album.findByPk(req.body.albumId);
+route.post('/right', async (req, res) => {
+  console.log('Наш консоль', req.body)
+  const { value, id } = req.body;
+  try { // найти по имени человека в базе
+    const [foundPeople] = await User.findAll({ where: { firstname: value }, raw: true })
+    // console.log('Наш hero', foundPeople.id)
+    //достать нужный альбом
+    const sharing = await Album.findByPk(id);
+    // console.log(sharing)
+
+
     // и посмотреть кто хозяин
     if (req.session?.userId === sharing.userid) {// если текущий юзер хозяин альбома
       const newRight = await AccessRight.create({
         // из инпутов формы альбом и кому права на просмотр
-        userid: req.body.albumId,// уточнить
-        albumid: req.body.userId,// уточнить
-      }, {
-        returning: true,
-        plain: true,
-      });
-      res.redirect('/');// уточнить страницу
+        albumid: sharing.id,// уточнить
+        userid: foundPeople.id,// уточнить
+      })
+      console.log('50=====>', newRight);
+      
+      res.send('vse ok');// уточнить страницу
     } else {
       renderTemplate(Error, {
         message: 'Дать доступ может только автор',
@@ -63,6 +70,7 @@ route.post('/', async (req, res) => {
       error: {},
     }, res);
   }
+
 }); */
 
 /* // /tasks/delete
