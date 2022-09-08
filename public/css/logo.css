@@ -1,0 +1,89 @@
+.bird1Div {
+  position: absolute;
+}
+.bird2Div {
+  position: absolute;
+}
+.dogDiv {
+  position: absolute;
+}
+.iceDiv {
+  position: absolute;
+  left: 800px;
+  top: 450px;
+}
+.ice {
+  width: 250px;
+  position: relative;
+  animation-name: ice;
+  animation-duration: 4s;
+}
+@keyframes ice {
+  0% {
+    bottom: 0;
+  }
+  100% {
+    bottom: 150px;
+  }
+}
+
+.maskaDiv {
+  position: absolute;
+}
+.maska {
+  width: 1000px;
+}
+.ph1Div {
+  position: absolute;
+  top: 400px;
+}
+.ph1 {
+  width: 300px;
+  position: relative;
+  animation-name: ph1;
+  animation-duration: 4s;
+}
+@keyframes ph1 {
+  0% {
+    bottom: 0;
+    left:0;
+  }
+  100% {
+    bottom: 40px;
+    left:50px;
+  }
+}
+.ph2Div {
+  position: absolute;
+  left: 900px;
+}
+
+.ph2 {
+  width: 300px;
+  position: relative;
+  animation-name: ph2;
+  animation-duration: 4s;
+}
+@keyframes ph2 {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 40px;
+  }
+}
+.ramenDiv {
+  position: absolute;
+}
+.ramen {
+  width: 300px;
+  position: relative;
+}
+
+.wow1 {
+  position: absolute;
+  top: 400px;
+}
+.titan {
+  width: 250px;
+}

@@ -1,10 +1,36 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-function Main(props) {
+function Main(user) {
+ // console.log('userMain', user);
   return (
-    <Layout title="Main">
-      <h1>Hello my dear friends! Shut up and upload your photo!</h1>
+    <Layout title="Main" username={user}>
+      <div className="mainLogo position-absolute align-items-center top-50 start-50 translate-middle border border-grey rounded ">
+        <div className="bird1Div">
+          <img className="bird1" src="./img/bird1.png" alt="" />
+        </div>
+        <div className="bird2Div">
+          <img className="bird2" src="./img/bird2.png" alt="" />
+        </div>
+        <div className="dogDiv">
+          <img className="dog" src="./img/dog.png" alt="" />
+        </div>
+        <div className="iceDiv">
+          <img className="ice" src="./img/ice.png" alt="" />
+        </div>
+        <div className="maskaDiv">
+          <img className="maska" src="./img/maska.png" alt="" />
+        </div>
+        <div className="ph1Div">
+          <img className="ph1" src="./img/photo1.png" alt="" />
+        </div>
+        <div className="ph2Div">
+          <img className="ph2" src="./img/photo2.png" alt="" />
+        </div>
+        <div className="ramenDiv">
+          <img className="ramen" src="./img/ramen.png" alt="" />
+        </div>
+      </div>
     </Layout>
   );
 }
