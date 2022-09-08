@@ -1,0 +1,101 @@
+/** ============================================================= */
+/*? кнопка sign up в форме main */
+
+.btnreg {
+  border: solid 2px #fde9ef;
+  position: absolute;
+  top: 700px;
+  left: 800px;
+  display: inline-block;
+  width: 200px;
+  height: 60px;
+  text-align: center;
+  line-height: 55px;
+  color: #fff;
+  font-size: 24px;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  box-sizing: border-box;
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  background-size: 300%;
+  border-radius: 30px;
+  z-index: 30;
+  animation: animate 8s linear infinite;
+}
+
+/* .btnreg:hover {
+    animation: animate 8s linear infinite;
+  } */
+
+@keyframes animate {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 400%;
+  }
+}
+
+.btnreg:before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  bottom: -5px;
+  left: -5px;
+  z-index: -1;
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  background-size: 400%;
+  border-radius: 40px;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.btnreg:hover:before {
+  filter: blur(20px);
+  opacity: 1;
+  animation: animate 8s linear infinite;
+}
+
+/** ============================================================= */
+/*? кнопка логин в форме логин */
+
+.btnForm {
+  line-height: 38px;
+  background: #333;
+  color: #ccc;
+  width: 100%;
+  height: 40px;
+  border: 0;
+  font-size: 18px;
+  border-radius: 4px;
+  font-family: 'Raleway', sans-serif;
+  transition: 0.6s;
+  overflow: hidden;
+  padding-bottom: 5px;
+}
+.btnForm:focus {
+  outline: 0;
+}
+
+.btnForm:before {
+  content: '';
+  display: block;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0.5;
+  filter: blur(30px);
+}
+
+.btnForm:hover {
+  background: #338033;
+  cursor: pointer;
+}
+.btnForm:before {
+  opacity: 0.6;
+  transition: 0.7s;
+}

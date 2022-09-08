@@ -65,7 +65,7 @@ app.get("/upload", (req, res) => {
 // ----------------------------------------------------
 // Здесь подключаю загрузку файлов
 
-app.post("/profile", upload.single("avatar"), async function (req, res, next) {
+/* app.post("/profile", upload.single("avatar"), async function (req, res, next) {
   // console.log("путь========>", path); // этот путь к фото надо загрузить в БД
   try {
     const { path } = req.file;
@@ -77,7 +77,7 @@ app.post("/profile", upload.single("avatar"), async function (req, res, next) {
   }
   // req.file - файл `avatar`
   // req.body сохранит текстовые поля, если они будут
-});
+}); */
 
 // Здесь подключаю загрузку файлов
 // ----------------------------------------------------

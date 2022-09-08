@@ -4,16 +4,17 @@ const Layout = require('./Layout');
 function RegisterForm() {
   return (
     <Layout title="Form">
-
       <form
-        className="container container-sm position-absolute top-50 start-50 translate-middle w-25 border border-grey rounded p-3 bg-light"
+        className="container container-sm position-absolute top-50 start-50 translate-middle w-25 border border-grey rounded p-4"
         action="/user/register"
         method="POST"
       >
-      <h1 className="label">Registration</h1>
-        <div className="mb">
+        <h1 className="label">
+          <i className="fa-regular fa-address-card"></i>SIGN UP
+        </h1>
+        <div className="mb-2">
           <label htmlFor="exampleInputEmail1" className="form-label">
-            First Name
+            FIRST NAME
           </label>
           <input
             type="text"
@@ -23,9 +24,9 @@ function RegisterForm() {
             name="firstname"
           />
         </div>
-        <div className="mb">
+        <div className="mb-2">
           <label htmlFor="exampleInputEmail1" className="form-label">
-            Last Name
+            LAST NAME
           </label>
           <input
             type="text"
@@ -35,9 +36,9 @@ function RegisterForm() {
             name="lastname"
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-2">
           <label htmlFor="exampleInputPassword1" className="form-label">
-            Email
+            EMAIL
           </label>
           <input
             type="email"
@@ -48,7 +49,7 @@ function RegisterForm() {
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">
-            Password
+            PASSWORD
           </label>
           <input
             type="password"
@@ -57,8 +58,8 @@ function RegisterForm() {
             name="password"
           />
         </div>
-        <button type="submit" className="btn btn-danger">
-          Registration
+        <button type="submit" className="btnForm">
+          Let's Go Enjoy!
         </button>
       </form>
     </Layout>

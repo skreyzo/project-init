@@ -1,10 +1,16 @@
 const route = require('express').Router();
 
-const { Album, AccessRight, User } = require('../db/models');
+
+const { Album, AccessRight, Photo } = require('../db/models');
 
 const renderTemplate = require('../lib/renderReactModule');
 
+const multer = require("multer");
+const upload = multer({ dest: "public/uploads/" });
+
 const Albums = require('../views/Album');
+const Upload = require("../views/Upload");
+const Myphoto = require("../views/Myphoto");
 
 route.get('/', async (req, res) => {
   try {
@@ -40,6 +46,7 @@ route.post('/right', async (req, res) => {
     const sharing = await Album.findByPk(id);
     // console.log(sharing)
 
+
     // и посмотреть кто хозяин
     if (req.session?.userId === sharing.userid) {// если текущий юзер хозяин альбома
       const newRight = await AccessRight.create({
@@ -63,7 +70,8 @@ route.post('/right', async (req, res) => {
       error: {},
     }, res);
   }
-});
+
+}); */
 
 /* // /tasks/delete
 route.delete('/delete', async (req, res) => {
@@ -88,7 +96,8 @@ route.delete('/delete', async (req, res) => {
 //   res.redirect('/tasks');
 // });
 
-/* route.get('/:id', async (req, res) => {
+//!ределать в params
+/* route.post('/photoid', async (req, res) => {
   console.log(req.params);
   try {
     const theAlbum = await Album.findByPk(req.params.id, { raw: true });
@@ -97,6 +106,47 @@ route.delete('/delete', async (req, res) => {
     console.error(error);
   }
 }); */
+//toJSON()
+route.get("/:photoid", async (req, res) => { 
+  try {
+    //console.log(req.params.photoid)
+    const photoId = req.params.photoid
+    const photos = await Photo.findAll({ where: { albumid: req.params.photoid }, raw: true });
+    //console.log(photos)
+    renderTemplate(Myphoto, { photoId, photos }, res);
+  } catch (error) {
+    console.error('RRRRRR', error);
+  }   
+});
+
+route.post("/:photoid", upload.single("photo"), async function (req, res, next) {
+    console.log("путь========>", req.file); // этот путь к фото надо загрузить в БД
+    try {
+      console.log('=>>>>>>>>>>>>>>>>>>>IIIIIIId',req.params.photoid)  
+      //const thisAlbum = await Album.findByPk(req.params.id, { raw: true });
+      const { path } = req.file;
+      const { comment } = req.body;
+      await Photo.create({ albumid: req.params.photoid, addres: path, comment: comment });
+      res.send("загрузил");
+    } catch (error) {
+      console.log(error);
+    }
+    // req.file - файл `avatar`
+    // req.body сохранит текстовые поля, если они будут
+  });
 
 module.exports = route;
 
+
+//! удалить альбом
+route.delete('/delete', async (req, res) => {
+  //console.log(req.body);
+  try {
+    const { id } = req.body;
+    await Album.destroy({ where: { id } });
+    //res.send('OKKKKKKKKKKKKKKKKKKKKKK')
+    res.sendStatus(200);
+  } catch (error) {
+    console.error(error);
+  }
+});

@@ -1,9 +1,10 @@
-const React = require("react");
+const React = require('react');
 const {
   proposalSyntaxPlugins,
 } = require('@babel/preset-env/lib/shipped-proposals');
 
 module.exports = function Layout({ children, title, username }) {
+
   return (
     <html lang="en">
       <head>
@@ -32,13 +33,16 @@ module.exports = function Layout({ children, title, username }) {
         ></script>
         <link rel="stylesheet" href="/css/publicStyles.css" />
         <link rel="stylesheet" href="/css/logo.css" />
+        <link rel="stylesheet" href="/css/button.css" />
       </head>
       <body>
         <div id="root">
           <header>
-            <nav className="navbar navbar-expand-lg bg-light">
-              <div className="container-fluid">
-                <i className="fa-solid fa-icons"></i>
+            <nav className="navbar navbar-expand-lg">
+              <div className="container-fluid ">
+                <a className="nav-link" href="/">
+                  <i className="fa-solid fa-icons"></i>
+                </a>
                 <button
                   className="navbar-toggler"
                   type="button"
@@ -50,17 +54,18 @@ module.exports = function Layout({ children, title, username }) {
                 >
                   <span className="navbar-toggler-icon" />
                 </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
+                <div
+                  className="collapse navbar-collapse text-light"
+                  id="navbarNav"
+                >
                   <ul className="navbar-nav">
-
-
                     {username?.user ? (
                       <>
                         <li className="nav-item">
                           <a
                             className="nav-link active"
                             aria-current="page"
-                            href="/myalbom"
+                            href="/album"
                           >
                             MyAlbom
                           </a>
@@ -71,8 +76,13 @@ module.exports = function Layout({ children, title, username }) {
                           </a>
                         </li>
                         <li className="nav-item">
+                          <a className="nav-link">
+                            {username?.user?.dataValues?.firstname}
+                          </a>
+                        </li>
+                        <li className="nav-item position-absolute top-0 end-0">
                           <a className="nav-link" href="/user/logout">
-                            Logout
+                            <i class="fa-solid fa-person-through-window"></i>
                           </a>
                         </li>
                       </>
@@ -80,17 +90,8 @@ module.exports = function Layout({ children, title, username }) {
                       <>
                         <li className="nav-item">
                           <a className="nav-link" href="/user/login">
-                            Login
-                          </a>
-                        </li>
-                        <li className="nav-item">
-                          <a className="nav-link" href="/user/register">
-                            Registration
-                          </a>
-                        </li>
-                        <li className="nav-item">
-                          <a className="nav-link" href="/">
-                            main
+                            <i className="fa-solid fa-right-to-bracket"></i>
+                            SIGN IN
                           </a>
                         </li>
                       </>
@@ -100,23 +101,22 @@ module.exports = function Layout({ children, title, username }) {
               </div>
             </nav>
           </header>
-          <div className="container">
-            <div className="row">
-              <div className="col align-self-center">{children}</div>
+          <div className="">
+            <div className="">
+              <div className="">{children}</div>
             </div>
           </div>
           <div className="footer">
             <footer className="footercontent d-flex flex-wrap justify-content-between align-items-center min-height:100% ">
               <div className="discMain">
-                <h3 className="disc1 footer__title text-dark">
+                <h3 className="disc1 footer__title text-light">
                   Go Make Something Awesome
                 </h3>
-                <h6 className="disc footer__title text-dark">
-                  Made with 🤍 in mother Russia
-                </h6>
               </div>
               <div className="logo">
-                <h6 className="disc footer__title text-dark">Contact Us</h6>
+                <h6 className="disc footer__title text-light">
+                  Contact | Support Us
+                </h6>
                 <a href="https://github.com/skreyzo/project-init">
                   <i className="fa-brands fa-github"></i>
                 </a>
