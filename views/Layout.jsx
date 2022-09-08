@@ -60,7 +60,7 @@ module.exports = function Layout({ children, title, username }) {
                           <a
                             className="nav-link active"
                             aria-current="page"
-                            href="/myalbom"
+                            href="/album"
                           >
                             MyAlbom
                           </a>

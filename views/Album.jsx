@@ -17,9 +17,9 @@ function Album({ albums }) {
               <div className="card-body">
                 <h5 className="card-title">{el.title}</h5>                                             
                 <input id={el.id} type="text" name="title" />                  
-                <button id={el.id} type="button" className="btn btn-danger grant">Дать права!</button>
-                <a href={`/tasks/${el.id}`} className="card-link">Подробнее</a>
-                <button id={el.id} type="button" className="btn btn-danger">Удалить альбом!</button>
+                <button data-btn="access" id={el.id} type="button" className="btn btn-danger grant">Дать права!</button>
+                <a href={`/album/${el.id}`} className="card-link">Подробнее</a>
+                <button data-btn="delete" id={el.id} type="button" className="btn btn-danger delete">Удалить альбом!</button>
               </div>
             </div>
           ))
