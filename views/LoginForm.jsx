@@ -4,16 +4,17 @@ const Layout = require('./Layout');
 function LoginForm() {
   return (
     <Layout title="Form">
-
       <form
-        className="container container-sm position-absolute top-50 start-50 translate-middle w-25 border border-grey rounded p-3 bg-light"
+        className="container container-sm position-absolute top-50 start-50 translate-middle w-25 rounded p-4"
         action="/user/login"
         method="POST"
       >
-        <h1 className="label">Login</h1>
+        <h1 className="label">
+          <i className="fa-solid fa-right-to-bracket"></i>SIGN IN
+        </h1>
         <div className="mb-3 ">
           <label htmlFor="exampleInputPassword1" className="form-label">
-            Email
+            EMAIL
           </label>
           <input
             type="email"
@@ -24,7 +25,7 @@ function LoginForm() {
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">
-            Password
+            PASSWORD
           </label>
           <input
             type="password"
@@ -33,7 +34,7 @@ function LoginForm() {
             name="password"
           />
         </div>
-        <button type="submit" className="btn btn-danger">
+        <button type="submit" className="btnForm">
           Go In!
         </button>
       </form>

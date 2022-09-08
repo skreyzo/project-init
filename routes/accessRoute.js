@@ -1,5 +1,6 @@
 const router = require('express').Router();
 
+
 //const Profile = require('../views/Profile');// уточнить
 
 const renderTemplate = require('../lib/renderReactModule');
