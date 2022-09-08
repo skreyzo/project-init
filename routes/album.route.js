@@ -71,7 +71,7 @@ route.post('/right', async (req, res) => {
     }, res);
   }
 
-}); */
+});
 
 /* // /tasks/delete
 route.delete('/delete', async (req, res) => {
