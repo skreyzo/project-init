@@ -4,8 +4,8 @@ const cover = document.querySelector('.Cover');
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
-  const title = event.target.title.value;  
-  //console.log({ title });
+  const title = event.target.title.value;
+  console.log({ title });
   const response = await fetch('/album', {
     method: 'POST',
     headers: {
@@ -21,10 +21,10 @@ form.addEventListener('submit', async (event) => {
   newCard.innerHTML = `
   <div class="card-body">
     <h5 class="card-title">${result.title}</h5>                             
-    <input type="text" name="title" />                  
-    <button id=${result.id} type="button" class="btn btn-danger">Добавить</button>
+    <input id=${el.id} type="text" name="title" />                  
+    <button id=${result.id} type="button" class=btn btn-danger grant">Дать права!</button>
     <a href="/album/${result.id}" class="card-link">Подробнее</a>
-    <button id=${result.id} type="button" class="btn btn-danger">Удалить</button>
+    <button id=${result.id} type="button" class="btn btn-danger">Удалить альбом!</button>
 </div>
   `;
   cover.appendChild(newCard);
@@ -36,17 +36,19 @@ form.addEventListener('submit', async (event) => {
 const grantBtn = document.querySelector('.grant')
 
 cover.addEventListener('click', async (event) => {
-    // event.preventDefault();
-    console.log(event.target)
-    const { id } = event.target
-    const input = document.getElementById(`${id}`)
-    console.log(input.value)
+  // event.preventDefault();
+  console.log(event.target)
+  const { id } = event.target
+  const {value} = document.getElementById(`${id}`)
+  console.log( value )
+  if (value) {
     const response = await fetch('/album/right', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({ input }),
-      });
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({ value }),
+    });
     const result = await response.json();
+  }
 });

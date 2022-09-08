@@ -1,6 +1,6 @@
 const route = require('express').Router();
 
-const { Album, AccessRight } = require('../db/models');
+const { Album, AccessRight, User } = require('../db/models');
 
 const renderTemplate = require('../lib/renderReactModule');
 
@@ -32,32 +32,34 @@ route.post('/', async (req, res) => {
 // создание записи в таблице прав
 route.post('/right', async (req, res) => {
     console.log('Наш консоль', req.body)
-/*   try {//достать нужный альбом 
-    const sharing = Album.findByPk(req.body.albumId);
-    // и посмотреть кто хозяин
-    if (req.session?.userId === sharing.userid) {// если текущий юзер хозяин альбома
-      const newRight = await AccessRight.create({
-        // из инпутов формы альбом и кому права на просмотр
-        userid: req.body.albumId,// уточнить
-        albumid: req.body.userId,// уточнить
-      }, {
-        returning: true,
-        plain: true,
-      });
-      res.redirect('/');// уточнить страницу
-    } else {
-      renderTemplate(Error, {
-        message: 'Дать доступ может только автор',
-        error: {},
-      }, res);
-    }
-  } catch (error) {
-    console.error(error)
-    renderTemplate(Error, {
-      message: 'Не удалось добавить запись в базу данных.',
-      error: {},
-    }, res);
-  } */
+  // try { // найти по имени человека в базе
+  //   // const foundPeople = User.findOne(firstname: req.body.value )
+  //    //достать нужный альбом
+  //   const sharing = Album.findByPk(req.body.albumId);
+  //   // и посмотреть кто хозяин
+  //   if (req.session?.userId === sharing.userid) {// если текущий юзер хозяин альбома
+  //     const newRight = await AccessRight.create({
+  //       // из инпутов формы альбом и кому права на просмотр
+  //       userid: req.body.albumId,// уточнить
+  //       albumid: req.body.userId,// уточнить
+  //     }, {
+  //       returning: true,
+  //       plain: true,
+  //     });
+  //     res.redirect('/album');// уточнить страницу
+  //   } else {
+  //     renderTemplate(Error, {
+  //       message: 'Дать доступ может только автор',
+  //       error: {},
+  //     }, res);
+  //   }
+  // } catch (error) {
+  //   console.error(error)
+  //   renderTemplate(Error, {
+  //     message: 'Не удалось добавить запись в базу данных.',
+  //     error: {},
+  //   }, res);
+  // } 
 });
 
 /* // /tasks/delete
