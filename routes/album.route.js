@@ -8,7 +8,7 @@ const Albums = require('../views/Album');
 
 route.get('/', async (req, res) => {
   try {
-    const albums = await Album.findAll({ where: { userid: req.session?.userId }, raw: true }); 
+    const albums = await Album.findAll({ where: { userid: req.session?.userId }, raw: true });
     renderTemplate(Albums, { albums }, res);
   } catch (error) {
     console.error(error);
@@ -17,7 +17,7 @@ route.get('/', async (req, res) => {
 // /tasks/form
 route.post('/', async (req, res) => {
   const { title } = req.body;
-   try {
+  try {
     const newAlb = await Album.create({ userid: req.session?.userId, title });
     res.json(newAlb);
   } catch (error) {
@@ -31,35 +31,39 @@ route.post('/', async (req, res) => {
 
 // создание записи в таблице прав
 route.post('/right', async (req, res) => {
-    console.log('Наш консоль', req.body)
-  // try { // найти по имени человека в базе
-  //   // const foundPeople = User.findOne(firstname: req.body.value )
-  //    //достать нужный альбом
-  //   const sharing = Album.findByPk(req.body.albumId);
-  //   // и посмотреть кто хозяин
-  //   if (req.session?.userId === sharing.userid) {// если текущий юзер хозяин альбома
-  //     const newRight = await AccessRight.create({
-  //       // из инпутов формы альбом и кому права на просмотр
-  //       userid: req.body.albumId,// уточнить
-  //       albumid: req.body.userId,// уточнить
-  //     }, {
-  //       returning: true,
-  //       plain: true,
-  //     });
-  //     res.redirect('/album');// уточнить страницу
-  //   } else {
-  //     renderTemplate(Error, {
-  //       message: 'Дать доступ может только автор',
-  //       error: {},
-  //     }, res);
-  //   }
-  // } catch (error) {
-  //   console.error(error)
-  //   renderTemplate(Error, {
-  //     message: 'Не удалось добавить запись в базу данных.',
-  //     error: {},
-  //   }, res);
-  // } 
+  console.log('Наш консоль', req.body)
+  const { value, id } = req.body;
+  try { // найти по имени человека в базе
+    const [foundPeople] = await User.findAll({ where: { firstname: value }, raw: true })
+    console.log('Наш hero', foundPeople.id)
+    //достать нужный альбом
+    const sharing = await Album.findByPk(id);
+    console.log(sharing)
+
+    // // и посмотреть кто хозяин
+    // if (req.session?.userId === sharing.userid) {// если текущий юзер хозяин альбома
+    //   const newRight = await AccessRight.create({
+    //     // из инпутов формы альбом и кому права на просмотр
+    //     albumid: req.body.albumId,// уточнить
+    //     userid: foundPeople.id,// уточнить
+    //   }, {
+    //     returning: true,
+    //     plain: true,
+    //   });
+    //   res.redirect('/album');// уточнить страницу
+    // } else {
+    //   renderTemplate(Error, {
+    //     message: 'Дать доступ может только автор',
+    //     error: {},
+    //   }, res);
+    // }
+  } catch (error) {
+    console.error(error)
+    renderTemplate(Error, {
+      message: 'Не удалось добавить запись в базу данных.',
+      error: {},
+    }, res);
+  }
 });
 
 /* // /tasks/delete

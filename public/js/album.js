@@ -40,14 +40,14 @@ cover.addEventListener('click', async (event) => {
   console.log(event.target)
   const { id } = event.target
   const {value} = document.getElementById(`${id}`)
-  console.log( value )
+  console.log( value, id )
   if (value) {
     const response = await fetch('/album/right', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify({ value }),
+      body: JSON.stringify({ value, id }),
     });
     const result = await response.json();
   }
