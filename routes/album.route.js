@@ -1,7 +1,7 @@
 const route = require('express').Router();
 
 
-const { Album, AccessRight, Photo } = require('../db/models');
+const { Album, AccessRight, Photo, User } = require('../db/models');
 
 const renderTemplate = require('../lib/renderReactModule');
 
@@ -40,7 +40,7 @@ route.post('/right', async (req, res) => {
   console.log('Наш консоль', req.body)
   const { value, id } = req.body;
   try { // найти по имени человека в базе
-    const [foundPeople] = await User.findAll({ where: { firstname: value }, raw: true })
+    const [foundPeople] = await User.findAll({ where: { email: value }, raw: true })
     // console.log('Наш hero', foundPeople.id)
     //достать нужный альбом
     const sharing = await Album.findByPk(id);
@@ -71,7 +71,7 @@ route.post('/right', async (req, res) => {
     }, res);
   }
 
-}); */
+}); 
 
 /* // /tasks/delete
 route.delete('/delete', async (req, res) => {

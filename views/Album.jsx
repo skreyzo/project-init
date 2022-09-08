@@ -13,7 +13,7 @@ function Album({ albums }) {
       <div className="Cover">
         {
           albums.map((el) => (
-            <div className="albumCard" style={{ width: '18rem' }}>
+            <div className="albumCard" style={{ width: '18rem' }} key={el.id}>
               <div className="card-body">
                 <h5 className="card-title">{el.title}</h5>                                             
                 <input id={el.id} type="text" name="title" />                  
