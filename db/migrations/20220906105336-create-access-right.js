@@ -22,6 +22,20 @@ module.exports = {
           key: 'id',
         },
       },
+      UserId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id',
+        },
+      },
+      AlbumId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Albums',
+          key: 'id',
+        },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

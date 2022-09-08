@@ -35,28 +35,27 @@ route.post('/right', async (req, res) => {
   const { value, id } = req.body;
   try { // найти по имени человека в базе
     const [foundPeople] = await User.findAll({ where: { firstname: value }, raw: true })
-    console.log('Наш hero', foundPeople.id)
+    // console.log('Наш hero', foundPeople.id)
     //достать нужный альбом
     const sharing = await Album.findByPk(id);
-    console.log(sharing)
+    // console.log(sharing)
 
-    // // и посмотреть кто хозяин
-    // if (req.session?.userId === sharing.userid) {// если текущий юзер хозяин альбома
-    //   const newRight = await AccessRight.create({
-    //     // из инпутов формы альбом и кому права на просмотр
-    //     albumid: req.body.albumId,// уточнить
-    //     userid: foundPeople.id,// уточнить
-    //   }, {
-    //     returning: true,
-    //     plain: true,
-    //   });
-    //   res.redirect('/album');// уточнить страницу
-    // } else {
-    //   renderTemplate(Error, {
-    //     message: 'Дать доступ может только автор',
-    //     error: {},
-    //   }, res);
-    // }
+    // и посмотреть кто хозяин
+    if (req.session?.userId === sharing.userid) {// если текущий юзер хозяин альбома
+      const newRight = await AccessRight.create({
+        // из инпутов формы альбом и кому права на просмотр
+        albumid: sharing.id,// уточнить
+        userid: foundPeople.id,// уточнить
+      })
+      console.log('50=====>', newRight);
+      
+      res.send('vse ok');// уточнить страницу
+    } else {
+      renderTemplate(Error, {
+        message: 'Дать доступ может только автор',
+        error: {},
+      }, res);
+    }
   } catch (error) {
     console.error(error)
     renderTemplate(Error, {
