@@ -1,0 +1,119 @@
+.titleAlbom {
+  padding: 10px;
+  margin-left: 200px;
+}
+.card-body {
+  margin: 25px;
+  display: flex;
+  flex-direction: column;
+}
+.picCard {
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
+    rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  width: 300px;
+  height: 300px;
+  opacity: 70%;
+  background-image: url(https://sun9-83.userapi.com/impg/h8U_6MtslCAvhtKnsx7iZhOBhfzMPFujnUHu6Q/d68xWu4CBxM.jpg?size=305x305&quality=95&sign=f5e53407485fedbf3cbede315778d367&type=album);
+}
+.picCard:hover {
+  /* transition: 0.2s;
+    transform: scale(1.1);
+  box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25); */
+}
+.Cover {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 120px;
+  margin-bottom: 20px;
+}
+
+.hr {
+  color: black;
+  width: auto;
+}
+.hr2 {
+  margin: 1% 0 0 140px;
+  color: black;
+  width: 82%;
+}
+.hr3 {
+  margin: 1% 0 150px 140px;
+  color: black;
+  width: 82%;
+}
+
+.pic {
+  height: 200px;
+}
+.card-title {
+  height: 30px;
+  padding: 4px;
+  margin: auto;
+}
+
+.shared {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+.inputAlbom {
+  width: 180px;
+  border: 0;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 16px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin: auto;
+  line-height: 27px;
+}
+
+.albumCard {
+  margin: 20px;
+  border-radius: 7px;
+  background: rgb(250, 237, 237);
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.albumForm {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  margin-left: 138px;
+}
+
+.inputComment {
+  width: 350px;
+  height: 30px;
+  border: 0;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  padding-left: 10px;
+  font-size: 14px;
+  padding-left: 40px;
+}
+
+.myAl {
+  margin-top: 10px;
+  margin-left: 210px;
+  font-size: 40px;
+  font-weight: 500;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.frAl {
+  margin-top: 10px;
+  margin-left: 175px;
+  font-size: 40px;
+  font-weight: 500;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}

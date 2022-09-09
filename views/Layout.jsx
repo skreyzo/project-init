@@ -1,6 +1,9 @@
 const React = require('react');
+const {
+  proposalSyntaxPlugins,
+} = require('@babel/preset-env/lib/shipped-proposals');
 
-module.exports = function Layout({ children, title }) {
+module.exports = function Layout({ children, title, username }) {
   return (
     <html lang="en">
       <head>
@@ -23,15 +26,22 @@ module.exports = function Layout({ children, title }) {
           crossOrigin="anonymous"
         />
         <script defer src="/js/publicScript.js" />
+        <script
+          src="https://kit.fontawesome.com/55a9ffd6d9.js"
+          crossOrigin="anonymous"
+        ></script>
         <link rel="stylesheet" href="/css/publicStyles.css" />
+        <link rel="stylesheet" href="/css/logo.css" />
+        <link rel="stylesheet" href="/css/button.css" />
+        <link rel="stylesheet" href="/css/album.css" />
       </head>
       <body>
         <div id="root">
           <header>
-            <nav className="navbar navbar-expand-lg bg-light">
-              <div className="container-fluid">
-                <a className="navbar-brand" href="/">
-                  MyPhoto
+            <nav className="navbar navbar-expand-lg">
+              <div className="container-fluid ">
+                <a className="nav-link" href="/">
+                  <i className="fa-solid fa-icons"></i>
                 </a>
                 <button
                   className="navbar-toggler"
@@ -44,50 +54,67 @@ module.exports = function Layout({ children, title }) {
                 >
                   <span className="navbar-toggler-icon" />
                 </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
+                <div
+                  className="collapse navbar-collapse text-light"
+                  id="navbarNav"
+                >
                   <ul className="navbar-nav">
-                    <li className="nav-item">
-                      <a
-                        className="nav-link active"
-                        aria-current="page"
-                        href="/"
-                      >
-                        MyAlbom
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/profile">
-                        Profile
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/">
-                        Logout
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/user/login">
-                        Login
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="/user/register">
-                        Registration
-                      </a>
-                    </li>
+                    {username ? (
+                      <>
+                        <li className="nav-item">
+                          <a
+                            className="nav-link"
+                            aria-current="page"
+                            href="/album"
+                          >
+                            MyAlbom
+                          </a>
+                        </li>
+                        <li className="nav-item">
+                          <a className="nav-link profile">{username}</a>
+                        </li>
+                        <li className="nav-item position-absolute top-0 end-0">
+                          <a className="nav-link" href="/user/logout">
+                            <i className="fa-solid fa-person-through-window"></i>
+                          </a>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li className="nav-item">
+                          <a className="nav-link" href="/user/login">
+                            <i className="fa-solid fa-right-to-bracket"></i>
+                            SIGN IN
+                          </a>
+                        </li>
+                      </>
+                    )}
                   </ul>
                 </div>
               </div>
             </nav>
           </header>
-          <div className="container">
-            <div className="row">
-              <div className="col align-self-center">{children}</div>
+          <div className="">
+            <div className="">
+              <div className="">{children}</div>
             </div>
           </div>
           <div className="footer">
-            <footer className=" d-flex flex-wrap justify-content-between align-items-center min-height:100% bg-dark">
-              <h1 className="footer__title text-light">Footer</h1>
+            <footer className="footercontent d-flex flex-wrap justify-content-between align-items-center min-height:100% ">
+              <div className="discMain">
+                <h3 className="disc1 footer__title text-light">
+                  Go Make Something Awesome
+                </h3>
+              </div>
+              <div className="logo">
+                <h6 className="disc footer__title text-light">
+                  Contact | Support Us
+                </h6>
+                <a href="https://github.com/skreyzo/project-init">
+                  <i className="fa-brands fa-github"></i>
+                </a>
+                <i className="fa-brands fa-telegram"></i>
+              </div>
             </footer>
           </div>
         </div>

@@ -14,6 +14,7 @@ module.exports = {
           model: 'Albums',
           key: 'id',
         },
+        onDelete: 'CASCADE',
       },
       comment: {
         type: Sequelize.STRING

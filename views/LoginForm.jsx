@@ -4,11 +4,39 @@ const Layout = require('./Layout');
 function LoginForm() {
   return (
     <Layout title="Form">
-      <h1>Sign IN</h1>
-      <form action="/user/login" method="POST">
-        <input type="email" name="email" placeholder="email" />
-        <input type="password" name="password" placeholder="password" />
-        <button type="submit">Go In!</button>
+      <form
+        className="container container-sm position-absolute top-50 start-50 translate-middle w-25 rounded p-4"
+        action="/user/login"
+        method="POST"
+      >
+        <h1 className="label">
+          <i className="fa-solid fa-right-to-bracket"></i>SIGN IN
+        </h1>
+        <div className="mb-3 ">
+          <label htmlFor="exampleInputPassword1" className="form-label">
+            EMAIL
+          </label>
+          <input
+            type="email"
+            className="form-control"
+            id="exampleInputPassword1"
+            name="email"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="exampleInputPassword1" className="form-label">
+            PASSWORD
+          </label>
+          <input
+            type="password"
+            className="form-control"
+            id="exampleInputPassword2"
+            name="password"
+          />
+        </div>
+        <button type="submit" className="btnForm">
+          Go In!
+        </button>
       </form>
     </Layout>
   );

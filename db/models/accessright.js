@@ -15,7 +15,9 @@ module.exports = (sequelize, DataTypes) => {
   }
   AccessRight.init({
     userid: DataTypes.INTEGER,
-    albumid: DataTypes.STRING
+    albumid: DataTypes.INTEGER,
+    UserId: DataTypes.INTEGER,
+    AlbumId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'AccessRight',

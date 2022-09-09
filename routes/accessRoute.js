@@ -1,21 +1,24 @@
 const router = require('express').Router();
 
-const Albums = require('../views/entries/Albums');// уточнить
 
-const renderTemplate = require('../lib/renderTemplate');
+//const Profile = require('../views/Profile');// уточнить
 
-const { Albums } = require('../db/models');// уточнить
-const { User } = require('../db/models');// уточнить
-const { Right } = require('../db/models');// уточнить
+const renderTemplate = require('../lib/renderReactModule');
+
+const { Album } = require('../db/models');// уточнить
+// const { User } = require('../db/models');// уточнить
+const { AccessRight } = require('../db/models');// уточнить
 
 // создание записи в таблице прав
 router.post('/', async (req, res) => {
-  try {
-    if (req?.app.locals.userId === Albums.userId) {// если текущий юзер хозяин альбома
+  try {//достать нужный альбом 
+    const sharing = Album.findByPk(req.body.albumId);
+    // и посмотреть кто хозяин
+    if (req.session?.userId === sharing.userid) {// если текущий юзер хозяин альбома
       const newRight = await AccessRight.create({
         // из инпутов формы альбом и кому права на просмотр
-        userId: req.body.albumId,// уточнить
-        albumId: req.body.userId,// уточнить
+        userid: req.body.albumId,// уточнить
+        albumid: req.body.userId,// уточнить
       }, {
         returning: true,
         plain: true,
@@ -60,19 +63,21 @@ router.post('/', async (req, res) => {
 
 
 
-router.get('/albums', async (req, res) => {// страница с альбомами
+router.get('/', async (req, res) => {// страница с альбомами
   try {
-    const right = await AccessRight.findAll({ where: { userId: req?.app.locals.userId } });
-    if (right) {
-      const album = await Albums.findAll({ where: { id: right.albumId } });
-      renderTemplate(Albums, { album, user: req.app.locals.userId }, res);
+    // выбираем свои альбомы 
+    const myAlbums = await Album.findAll({ where: { userid: req.session?.userId } });
+    // выбираем разрешенные
+    const grantedAlbums = await AccessRight.findAll({ where: { userid: req.session?.userId } }); // деструктурировать?
+    if (myAlbums || grantedAlbums) {
+      renderTemplate(Profile, { myAlbums, grantedAlbums, user: req.session?.userId }, res);
     } else {
       res.send('Sorry, access denied');
     }
   } catch (error) {
     console.error(error)
     renderTemplate(Error, {
-      message: 'Не удалось добавить запись в базу данных.',
+      message: 'Не удалось прочитать  базу данных.',
       error: {},
     }, res);
   }
