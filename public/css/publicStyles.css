@@ -61,6 +61,10 @@ body {
   color: rgb(230, 54, 54);
   width: 35px;
 }
+.fa-at {
+  margin: auto;
+  color: #686767;
+}
 .fa-icons {
   font-size: 24px;
   color: rgb(230, 54, 54);
@@ -72,7 +76,7 @@ body {
 .fa-regular {
   padding-right: 5px;
 }
-.fa-person-through-window{
+.fa-person-through-window {
   color: white;
   font-size: 30px;
   padding-top: 5px;
@@ -151,4 +155,9 @@ body {
 
 .navName {
   font-size: 20px;
+}
+
+.profile {
+  position: absolute;
+  left: 1700px;
 }

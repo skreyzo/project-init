@@ -58,7 +58,6 @@ route.post('/right', async (req, res) => {
         albumid: sharing.id, // уточнить
         userid: foundPeople.id, // уточнить
       });
-      console.log('50=====>', newRight);
 
       res.sendStatus(200); // уточнить страницу
     } else {
@@ -144,7 +143,9 @@ route.post(
     try {
       
       //const thisAlbum = await Album.findByPk(req.params.id, { raw: true });
+
       const { path } = req.file;      
+
       const { comment } = req.body;
       await Photo.create({
         albumid: req.params.photoid,
