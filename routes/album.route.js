@@ -28,7 +28,9 @@ route.get('/', async (req, res) => {
 
     const resultAlbumsAll = albumsAll.map((el) => el.id);
     const resultalbumIdShared = albumIdShared.map((el) => el.albumid);
-    const albumShared = albumsAll.filter((el) => resultalbumIdShared.includes(el.id))
+    const albumShared = albumsAll.filter((el) =>
+      resultalbumIdShared.includes(el.id)
+    );
 
     const user = await User.findByPk(req.session?.userId);
     renderTemplate(Albums, { albumsUser, user, albumShared }, res);
@@ -133,8 +135,7 @@ route.post(
         addres: path.slice(6),
         comment: comment,
       });
-      res.send('загрузил');
-      // res.redirect(`/albom/${id}`);
+      res.redirect(`/album/${req.params.photoid}`);
     } catch (error) {
       console.log(error);
     }
