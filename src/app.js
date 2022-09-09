@@ -62,25 +62,6 @@ app.get("/upload", (req, res) => {
   renderTemplate(Upload, {}, res);
 });
 
-// ----------------------------------------------------
-// Здесь подключаю загрузку файлов
-
-/* app.post("/profile", upload.single("avatar"), async function (req, res, next) {
-  // console.log("путь========>", path); // этот путь к фото надо загрузить в БД
-  try {
-    const { path } = req.file;
-    const { comment } = req.body;
-    await Photo.create({ addres: path, comment: comment });
-    res.send("загрузил");
-  } catch (error) {
-    console.log(error);
-  }
-  // req.file - файл `avatar`
-  // req.body сохранит текстовые поля, если они будут
-}); */
-
-// Здесь подключаю загрузку файлов
-// ----------------------------------------------------
 
 app.use("/user", userRoute);
 app.use("/album", albumRoute);

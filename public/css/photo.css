@@ -1,0 +1,20 @@
+.inputCommentPhoto {
+  width: 350px;
+  height: 70px;
+  border: 0;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  font-size: 14px;
+  padding-left: 20px;
+}
+
+.photoNav {
+  display: flex;
+  flex-direction: column;
+  margin-left: 138px;
+}
+
+.titlePhoto {
+  padding: 10px;
+  margin-left: 40px;
+}

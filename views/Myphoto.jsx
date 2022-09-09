@@ -10,9 +10,17 @@ function Myphoto({ photoId, photos, userAlbum }) {
         method="post"
         encType="multipart/form-data"
       >
-        <input type="file" name="photo" />
-        <input type="text" name="comment" />
-        <button>Upload pic</button>
+        <div className='photoNav'>
+        <h1 className="titlePhoto">Upload Photo</h1>
+        <input type="file" name="photo" className='inputPic'/>
+        <input
+          type="text"
+          name="comment"
+          className="inputCommentPhoto"
+          placeholder="Comment your photo"
+        />
+        <button className="btnUpload text-light">Upload pic</button>
+        </div>
       </form>
       <div className="Foto">
         {photos.map((el) => (
@@ -23,14 +31,13 @@ function Myphoto({ photoId, photos, userAlbum }) {
                 MyPhoto
               </a> */}
               <button
-                
                 id={el.id}
                 type="button"
                 className="btn btn-danger deleteFoto"
               >
                 Удалить фото!
               </button>
-              <img src={`${el.addres}`} alt="" className='pic'/>
+              <img src={`${el.addres}`} alt="" className="pic" />
             </div>
           </div>
         ))}

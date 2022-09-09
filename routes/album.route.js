@@ -13,16 +13,33 @@ const Myphoto = require('../views/Myphoto');
 
 route.get('/', async (req, res) => {
   try {
-    const albums = await Album.findAll({
+    const albumsUser = await Album.findAll({
       where: { userid: req.session?.userId },
       raw: true,
     });
-    const userAlbum = await User.findByPk(req.session?.userId);
-    renderTemplate(Albums, { albums, userAlbum }, res);
+    const albumsAll = await Album.findAll({
+      raw: true,
+    });
+    // find the albums shared for current user
+    const albumIdShared = await AccessRight.findAll({
+      where: { userid: req.session?.userId },
+      raw: true,
+    });
+
+    const resultAlbumsAll = albumsAll.map((el) => el.id);
+    const resultalbumIdShared = albumIdShared.map((el) => el.albumid);
+    // console.log('resultAlbumsAll', resultAlbumsAll);
+    // console.log('resultalbumIdShared', resultalbumIdShared);
+    const albumShared = albumsAll.filter((el) => resultalbumIdShared.includes(el.id))
+    console.log("result", albumShared);
+
+    const user = await User.findByPk(req.session?.userId);
+    renderTemplate(Albums, { albumsUser, albumsAll, albumIdShared, user }, res);
   } catch (error) {
     console.error(error);
   }
 });
+
 // /tasks/form
 route.post('/', async (req, res) => {
   const { title } = req.body;
@@ -43,8 +60,12 @@ route.post('/right', async (req, res) => {
   console.log('Наш консоль', req.body);
   const { value, id } = req.body;
 
-  try { // найти по имени человека в базе
-    const [foundPeople] = await User.findAll({ where: { email: value }, raw: true })
+  try {
+    // найти по имени человека в базе
+    const [foundPeople] = await User.findAll({
+      where: { email: value },
+      raw: true,
+    });
     // console.log('Наш hero', foundPeople.id)
     //достать нужный альбом
     const sharing = await Album.findByPk(id);
@@ -81,44 +102,8 @@ route.post('/right', async (req, res) => {
       res
     );
   }
+});
 
-}); 
-
-
-/* // /tasks/delete
-route.delete('/delete', async (req, res) => {
-  // console.log(req.body);
-  try {
-    const { id } = req.body;
-    await Task.destroy({ where: { id } });
-    res.sendStatus(200);
-  } catch (error) {
-    console.error(error);
-  }
-}); */
-
-// route.post('/addTask', validateForm, async (req, res) => {
-//   const { title, description } = req.body;
-//   // console.log('res.app.locals', res.app.locals);
-//   try {
-//     await Task.create({ title, description });
-//   } catch (error) {
-//     console.error('RRRRRR', error);
-//   }
-//   res.redirect('/tasks');
-// });
-
-//!ределать в params
-/* route.post('/photoid', async (req, res) => {
-  console.log(req.params);
-  try {
-    const theAlbum = await Album.findByPk(req.params.id, { raw: true });
-    renderTemplate(myPhoto, { theAlbum }, res);
-  } catch (error) {
-    console.error(error);
-  }
-}); */
-//toJSON()
 route.get('/:photoid', async (req, res) => {
   try {
     //console.log(req.params.photoid)
@@ -141,18 +126,18 @@ route.post(
   async function (req, res, next) {
     //console.log('путь========>', req.file); // этот путь к фото надо загрузить в БД
     try {
-      
       //const thisAlbum = await Album.findByPk(req.params.id, { raw: true });
 
-      const { path } = req.file;      
+      const { path } = req.file;
 
       const { comment } = req.body;
       await Photo.create({
         albumid: req.params.photoid,
         addres: path.slice(6),
         comment: comment,
-      });      
+      });
       res.send('загрузил');
+      res.redirect(`/albom/${id}`);
     } catch (error) {
       console.log(error);
     }

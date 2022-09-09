@@ -35,6 +35,7 @@ module.exports = function Layout({ children, title, username }) {
         <link rel="stylesheet" href="/css/logo.css" />
         <link rel="stylesheet" href="/css/button.css" />
         <link rel="stylesheet" href="/css/album.css" />
+        <link rel="stylesheet" href="/css/photo.css" />
       </head>
       <body>
         <div id="root">
