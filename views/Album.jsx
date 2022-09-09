@@ -47,7 +47,7 @@ function Album({ albums, userAlbum }) {
                   type="button"
                   className="btnSh text-light"
                 >
-                  Shared
+                  Share
                 </button>
               </div>
               <a href={`/album/${el.id}`} className="card-link">
