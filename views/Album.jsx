@@ -1,7 +1,7 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-function Album({ albumsUser, albumsAll, albumIdShared, user }) {
+function Album({ albumsUser, user, albumShared }) {
   // console.log('albumsUser',albumsUser);
   // console.log('albumsAll',albumsAll);
   // console.log('albumIdShared', albumIdShared);
@@ -73,11 +73,8 @@ function Album({ albumsUser, albumsAll, albumIdShared, user }) {
       </div>
       <div className="frAl">Friends albums</div>
       <hr className="hr3" align="center" />
-      <div className="Cover">
-        {/* <div>My album</div> */}
-        {/* albumid.includes(el.albumid)) */}
-        {/* {albums.filter((el) => el.id === albumid.albumid) */}
-        {albumsAll.map((el) => (
+      <div className="CoverSh">
+        {albumShared.map((el) => (
           <div className="albumCard" key={Math.round(Math.random) * 10}>
             <div className="card-body">
               <div className="picCard"></div>
@@ -87,7 +84,6 @@ function Album({ albumsUser, albumsAll, albumIdShared, user }) {
                   <h6> Go to photo</h6>
                 </button>
               </a>
-              <hr className="hr" />
             </div>
           </div>
         ))}

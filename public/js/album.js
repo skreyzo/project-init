@@ -14,6 +14,7 @@ form.addEventListener('submit', async (event) => {
     },
     body: JSON.stringify({ title }),
   });
+  document.getElementsByClassName('inputComment').value = '';
   const result = await response.json();
   //console.log(result);
   const newCard = document.createElement('div');

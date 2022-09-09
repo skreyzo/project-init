@@ -16,11 +16,7 @@
   opacity: 70%;
   background-image: url(https://sun9-83.userapi.com/impg/h8U_6MtslCAvhtKnsx7iZhOBhfzMPFujnUHu6Q/d68xWu4CBxM.jpg?size=305x305&quality=95&sign=f5e53407485fedbf3cbede315778d367&type=album);
 }
-.picCard:hover {
-  /* transition: 0.2s;
-    transform: scale(1.1);
-  box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25); */
-}
+
 .Cover {
   display: flex;
   flex-direction: row;
@@ -28,6 +24,14 @@
   margin-left: 120px;
   margin-bottom: 20px;
 }
+.CoverSh {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 120px;
+  margin-bottom: 80px;
+}
+
 
 .hr {
   color: black;
@@ -39,7 +43,7 @@
   width: 82%;
 }
 .hr3 {
-  margin: 1% 0 150px 140px;
+  margin: 1% 0 0 140px;
   color: black;
   width: 82%;
 }

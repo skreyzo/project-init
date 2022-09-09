@@ -28,13 +28,10 @@ route.get('/', async (req, res) => {
 
     const resultAlbumsAll = albumsAll.map((el) => el.id);
     const resultalbumIdShared = albumIdShared.map((el) => el.albumid);
-    // console.log('resultAlbumsAll', resultAlbumsAll);
-    // console.log('resultalbumIdShared', resultalbumIdShared);
     const albumShared = albumsAll.filter((el) => resultalbumIdShared.includes(el.id))
-    console.log("result", albumShared);
 
     const user = await User.findByPk(req.session?.userId);
-    renderTemplate(Albums, { albumsUser, albumsAll, albumIdShared, user }, res);
+    renderTemplate(Albums, { albumsUser, user, albumShared }, res);
   } catch (error) {
     console.error(error);
   }
@@ -137,7 +134,7 @@ route.post(
         comment: comment,
       });
       res.send('загрузил');
-      res.redirect(`/albom/${id}`);
+      // res.redirect(`/albom/${id}`);
     } catch (error) {
       console.log(error);
     }

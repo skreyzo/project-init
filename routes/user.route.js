@@ -6,6 +6,8 @@ const LoginForm = require('../views/LoginForm');
 const RegisterForm = require('../views/RegisterForm');
 const Main = require('../views/Main');
 
+
+const { checkUserInBase } = require('../middleware/checkUserInBase.middleware');
 const checkUser = require('../middleware/checkUser.middleware');
 //const MyAlboms = require('../views/MyAlboms');
 
@@ -16,7 +18,7 @@ route.get('/register', (req, res) => {
   renderTemplate(RegisterForm, null, res);
 });
 
-route.post('/register', async (req, res) => {
+route.post('/register', checkUserInBase, async (req, res) => {
   const { password, email, firstname, lastname } = req.body;
   const user = await User.create({
     password,
