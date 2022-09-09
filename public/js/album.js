@@ -39,7 +39,7 @@ form.addEventListener('submit', async (event) => {
       type="button"
       class="btnSh text-light"
     >
-      Shared
+      Share
     </button>
  
   </div>
@@ -64,26 +64,6 @@ form.addEventListener('submit', async (event) => {
   event.target.title.value = '';
 });
 
-//! Обработчик передачи прав
-
-//const grantBtn = document.querySelector('.grant')
-
-/* cover.addEventListener('click', async (event) => {
-    // event.preventDefault();
-    //console.log(event.target)
-    const { id } = event.target
-    const input = document.getElementById(`${id}`)
-    //console.log(input.value)
-    const response = await fetch('/album/right', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({ value, id }),
-    });
-    const result = await response.json();
-
-}); */
 
 //! Слушатель на удаление альбома
 
@@ -124,7 +104,7 @@ cover.addEventListener('click', async (event) => {
       }
       
     // console.log(response);
-    }
+  
   }
 
   } catch (error) {
@@ -132,24 +112,3 @@ cover.addEventListener('click', async (event) => {
   }
 });
 
-//! Удалить альбом
-
-/* foto.addEventListener('click', async (event) => {
-  console.log('BTN', event.target);
-  const { id } = event.target;
-    if (event.target.tagName === 'BUTTON') {       
-      const response = await fetch('/album/fotodelete', {
-      method: 'DELETE',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({ id }),
-    });
-    // console.log(response);
-    if (response.status === 200) {
-      foto.removeChild(event.target.parentNode.parentNode);
-    } else if (response.status === 555) {
-      console.log('ERROR!!!!!11');
-    }
-  }
-}); */
