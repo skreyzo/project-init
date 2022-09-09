@@ -2,8 +2,6 @@ console.log('client');
 const form = document.forms.albumForm;
 const cover = document.querySelector('.Cover');
 const deleteBtn = document.querySelector('.delete');
-const foto = document.querySelector('.Foto');
-const deleteFoto = document.querySelector('.deleteFoto');
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
