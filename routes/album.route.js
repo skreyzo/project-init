@@ -59,7 +59,7 @@ route.post('/right', async (req, res) => {
         userid: foundPeople.id, // уточнить
       });
 
-      res.send('vse ok'); // уточнить страницу
+      res.sendStatus(200); // уточнить страницу
     } else {
       renderTemplate(
         Error,
@@ -139,17 +139,19 @@ route.post(
   '/:photoid',
   upload.single('photo'),
   async function (req, res, next) {
-    console.log('путь========>', req.file); // этот путь к фото надо загрузить в БД
+    //console.log('путь========>', req.file); // этот путь к фото надо загрузить в БД
     try {
-      console.log('=>>>>>>>>>>>>>>>>>>>IIIIIIId', req.params.photoid);
+      
       //const thisAlbum = await Album.findByPk(req.params.id, { raw: true });
-      const { path } = req.file
+
+      const { path } = req.file;      
+
       const { comment } = req.body;
       await Photo.create({
         albumid: req.params.photoid,
         addres: path.slice(6),
         comment: comment,
-      });
+      });      
       res.send('загрузил');
     } catch (error) {
       console.log(error);
@@ -167,6 +169,19 @@ route.delete('/delete', async (req, res) => {
   try {
     const { id } = req.body;
     await Album.destroy({ where: { id } });
+    //res.send('OKKKKKKKKKKKKKKKKKKKKKK')
+    res.sendStatus(200);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+//! удалить фото
+route.delete('/fotodelete', async (req, res) => {
+  console.log('kggygygy', req.body);
+  try {
+    const { id } = req.body;
+    await Photo.destroy({ where: { id } });
     //res.send('OKKKKKKKKKKKKKKKKKKKKKK')
     res.sendStatus(200);
   } catch (error) {

@@ -21,6 +21,7 @@ form.addEventListener('submit', async (event) => {
   // newCard.style.width = '18rem';
   newCard.innerHTML = `
   <div class="card-body">
+
   <div class="picCard"></div>
   <h6 class="card-title">${result.title}</h6>
   <div class="shared">
@@ -40,6 +41,7 @@ form.addEventListener('submit', async (event) => {
     >
       Shared
     </button>
+ 
   </div>
   <a href="/album/${result.id}" class="card-link">
     <button type="button" class="btnGo text-light">
@@ -106,19 +108,48 @@ cover.addEventListener('click', async (event) => {
         // console.log(response);
       }
       console.log(event.target.dataset.btn);
-      if (event.target.dataset.btn === 'access') {
-        const response = await fetch('/album/right', {
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify({ value, id }),
-        });
-        const result = await response.json();
-        // console.log(response);
-      }
+
     }
+
+    if(event.target.dataset.btn === 'access' && value) {
+      const response = await fetch('/album/right', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({ value, id }),
+      });
+      if (response.status === 200) {
+        alert(`Вы дали права пользователю  с почтой ${value}!`)
+      }
+      
+    // console.log(response);
+    }
+  }
+
   } catch (error) {
     console.error('RRRRRR', error);
   }
 });
+
+//! Удалить альбом
+
+/* foto.addEventListener('click', async (event) => {
+  console.log('BTN', event.target);
+  const { id } = event.target;
+    if (event.target.tagName === 'BUTTON') {       
+      const response = await fetch('/album/fotodelete', {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({ id }),
+    });
+    // console.log(response);
+    if (response.status === 200) {
+      foto.removeChild(event.target.parentNode.parentNode);
+    } else if (response.status === 555) {
+      console.log('ERROR!!!!!11');
+    }
+  }
+}); */
